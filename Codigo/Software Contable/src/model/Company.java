@@ -8,6 +8,7 @@ public class Company {
 	private String name;
 	private String Address;
 	private String phoneNumber;
+	private String type;
 	private ArrayList<Transaction> transactions;
 	private ArrayList<Account> accounts;
 	private ArrayList<ThirdParty> thirdParties;
@@ -53,17 +54,26 @@ public class Company {
 	public void setThirdParties(ArrayList<ThirdParty> thirdParties) {
 		this.thirdParties = thirdParties;
 	}
-	public Company(String nIT, String name, String address, String phoneNumber, ArrayList<Transaction> transactions,
-			ArrayList<Account> accounts, ArrayList<ThirdParty> thirdParties) {
+
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public Company(String nIT, String name, String address, String phoneNumber, String type,
+			ArrayList<Transaction> transactions, ArrayList<Account> accounts, ArrayList<ThirdParty> thirdParties) {
 		super();
 		NIT = nIT;
 		this.name = name;
 		Address = address;
 		this.phoneNumber = phoneNumber;
+		this.type = type;
 		this.transactions = transactions;
 		this.accounts = accounts;
 		this.thirdParties = thirdParties;
 	}
+	
 	
 	
 

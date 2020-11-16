@@ -9,6 +9,10 @@
 
 package application;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,8 +21,25 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import model.Account;
+import model.Company;
+import model.ThirdParty;
+import model.Transaction;
 
 public class ControladoraPrincipal {
+	
+	//Contenedora de compañias
+	private ArrayList<Company> companies;
+	//Contenedora de tipos de compañias
+	private static final String[] companyTypes= {"Manufactura","Servicios","Mixto","?"};
+	private static final String[] accountGroups= {"Activos","Pasivos","Patrimonio","Ingresos","Egresos"};
+	
+	@FXML
+    public void initialize() {
+		companies=new ArrayList<Company>();
+		agregarTipoEmpresa.setItems(FXCollections.observableList(Arrays.asList(companyTypes)));
+    }
+	
 
 	// ----------------------------------------------------------------------------------
 
@@ -145,6 +166,9 @@ public class ControladoraPrincipal {
 
 	@FXML
 	void agregarEmpresa(ActionEvent event) {
+		
+		Company comp=new Company(agregarNombreEmpresa.getText(), agregarNITEmpresa.getText(), agregarDireccionEmpresa.getText(), agregarTelefonoEmpresa.getText(), agregarTipoEmpresa.getValue(), new ArrayList<Transaction>(), new ArrayList<Account>(), new ArrayList<ThirdParty>());
+		companies.add(comp);
 
 	}
 
