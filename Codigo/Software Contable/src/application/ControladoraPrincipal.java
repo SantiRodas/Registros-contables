@@ -37,7 +37,7 @@ public class ControladoraPrincipal {
 	
 	public ControladoraPrincipal() {
 		
-		
+		// TODO VA AQUI
 		
 	}
 
@@ -292,7 +292,11 @@ public class ControladoraPrincipal {
 	@FXML
 	public void initialize() {
 		
+		// ******************************************************************************
+		
 		controladora = new Controller(null);
+		
+		// ******************************************************************************
 		
 		cuenta.setDisable(true);
 		terceraPersona.setDisable(true);
@@ -300,22 +304,22 @@ public class ControladoraPrincipal {
 		editarRegistro.setDisable(true);
 		salida.setDisable(true);
 		
+		// ******************************************************************************
+		
+		agregarTipoEmpresa.getItems().add("Comercio");
 		agregarTipoEmpresa.getItems().add("Manufactura");
 		agregarTipoEmpresa.getItems().add("Servicio");
-		agregarTipoEmpresa.getItems().add("Comercio");
 		
-<<<<<<< HEAD
-=======
-		controladora=new Controller(null);
+		// ******************************************************************************
 		
 		grupoCuenta.getItems().add("Activos");
+		grupoCuenta.getItems().add("Gastos");
+		grupoCuenta.getItems().add("Ingresos");
 		grupoCuenta.getItems().add("Pasivos");
 		grupoCuenta.getItems().add("Patrimonio");
-		grupoCuenta.getItems().add("Ingresos");
-		grupoCuenta.getItems().add("Gastos");
 		
-		
->>>>>>> 9dc8ff0f3c5dbb77a905aaa015729d50cf3e6eae
+		// ******************************************************************************
+
 	}
 	
 	// ----------------------------------------------------------------------------------
