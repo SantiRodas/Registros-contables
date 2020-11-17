@@ -194,7 +194,7 @@ public class ControladoraPrincipal {
 
 			String NIT = agregarNITEmpresa.getText();
 
-			String name = agregarNombreRegistro.getText();
+			String name = agregarNombreEmpresa.getText();
 
 			String direccion = agregarDireccionEmpresa.getText();
 
@@ -317,6 +317,7 @@ public class ControladoraPrincipal {
 	
 	// METODO INITIALIZE
 	
+	@FXML
 	public void initialize() {
 		
 		cuenta.setDisable(true);
@@ -328,6 +329,8 @@ public class ControladoraPrincipal {
 		agregarTipoEmpresa.getItems().add("Manufactura");
 		agregarTipoEmpresa.getItems().add("Servicio");
 		agregarTipoEmpresa.getItems().add("Comercio");
+		
+		controladora=new Controller(null);
 		
 	}
 	
