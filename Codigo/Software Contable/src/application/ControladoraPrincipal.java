@@ -20,7 +20,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import model.Company;
 import model.Controller;
 
@@ -81,25 +80,7 @@ public class ControladoraPrincipal {
 	private TextField agregarNombreCuenta;
 
 	@FXML
-	private ToggleGroup naturaleza;
-
-	@FXML
-	private RadioButton activoRB;
-
-	@FXML
-	private RadioButton pasivoRB;
-
-	@FXML
 	private ChoiceBox<String> grupoCuenta;
-
-	@FXML
-	private ToggleGroup tipo;
-
-	@FXML
-	private RadioButton balanceRB;
-
-	@FXML
-	private RadioButton resultadoRB;
 
 	@FXML
 	private Button botonAgregarCuenta;
@@ -240,15 +221,6 @@ public class ControladoraPrincipal {
 
 	// ----------------------------------------------------------------------------------
 
-	// METODO ON ACTION EVENT PARA AGREGAR UN GRUPO
-
-	@FXML
-	void agregarGrupo(ActionEvent event) {
-
-	}
-
-	// ----------------------------------------------------------------------------------
-
 	// METODO ON ACTION EVENT PARA AGREGAR UNA PERSONA
 
 	@FXML
@@ -320,6 +292,8 @@ public class ControladoraPrincipal {
 	@FXML
 	public void initialize() {
 		
+		controladora = new Controller(null);
+		
 		cuenta.setDisable(true);
 		terceraPersona.setDisable(true);
 		agregarRegistro.setDisable(true);
@@ -329,8 +303,6 @@ public class ControladoraPrincipal {
 		agregarTipoEmpresa.getItems().add("Manufactura");
 		agregarTipoEmpresa.getItems().add("Servicio");
 		agregarTipoEmpresa.getItems().add("Comercio");
-		
-		controladora=new Controller(null);
 		
 	}
 	
