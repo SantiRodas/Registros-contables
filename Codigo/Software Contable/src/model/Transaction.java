@@ -80,15 +80,15 @@ public class Transaction {
 	
 	// METODO CONTRUCTOR DE LA CLASE TRANSACTION
 	
-	public Transaction(Date date, String description, ArrayList<Account> accounts, ArrayList<Double> values, ThirdParty thirdParty) {
+	public Transaction(Date date, String description, ThirdParty thirdParty) {
 
 		this.date = date;
 		
 		this.description = description;
 		
-		this.accounts = accounts;
+		accounts = new ArrayList<Account>();
 		
-		this.values = values;
+		values = new ArrayList<Double>();
 		
 		this.thirdParty = thirdParty;
 	

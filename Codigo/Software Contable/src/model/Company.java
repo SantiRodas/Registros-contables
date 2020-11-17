@@ -99,9 +99,9 @@ public class Company {
 	
 	// METODO CONSTRUCTOR DE LA CLASE COMPANY
 	
-	public Company(String nIT, String name, String address, String phoneNumber, ArrayList<Transaction> transactions, ArrayList<Account> accounts, ArrayList<ThirdParty> thirdParties) {
+	public Company(String nit, String name, String address, String phoneNumber) {
 		
-		NIT = nIT;
+		NIT = nit;
 		
 		this.name = name;
 		
@@ -109,12 +109,12 @@ public class Company {
 		
 		this.phoneNumber = phoneNumber;
 		
-		this.transactions = transactions;
+		transactions = new ArrayList<>();
 		
-		this.accounts = accounts;
+		accounts = new ArrayList<Account>();
 		
-		this.thirdParties = thirdParties;
-	
+		thirdParties = new ArrayList<ThirdParty>();
+		
 	}
 	
 	// ----------------------------------------------------------------------------------

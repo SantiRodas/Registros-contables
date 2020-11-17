@@ -76,6 +76,7 @@ public class Account {
 		this.group = group;
 		
 		this.resultAccount = resultAccount;
+		
 	}
 	
 	// ----------------------------------------------------------------------------------
