@@ -304,6 +304,18 @@ public class ControladoraPrincipal {
 		agregarTipoEmpresa.getItems().add("Servicio");
 		agregarTipoEmpresa.getItems().add("Comercio");
 		
+<<<<<<< HEAD
+=======
+		controladora=new Controller(null);
+		
+		grupoCuenta.getItems().add("Activos");
+		grupoCuenta.getItems().add("Pasivos");
+		grupoCuenta.getItems().add("Patrimonio");
+		grupoCuenta.getItems().add("Ingresos");
+		grupoCuenta.getItems().add("Gastos");
+		
+		
+>>>>>>> 9dc8ff0f3c5dbb77a905aaa015729d50cf3e6eae
 	}
 	
 	// ----------------------------------------------------------------------------------
