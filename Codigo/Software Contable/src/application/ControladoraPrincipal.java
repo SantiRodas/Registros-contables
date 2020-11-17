@@ -332,6 +332,13 @@ public class ControladoraPrincipal {
 		
 		controladora=new Controller(null);
 		
+		grupoCuenta.getItems().add("Activos");
+		grupoCuenta.getItems().add("Pasivos");
+		grupoCuenta.getItems().add("Patrimonio");
+		grupoCuenta.getItems().add("Ingresos");
+		grupoCuenta.getItems().add("Gastos");
+		
+		
 	}
 	
 	// ----------------------------------------------------------------------------------
