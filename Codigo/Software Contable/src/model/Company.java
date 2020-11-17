@@ -25,6 +25,8 @@ public class Company {
 	
 	private String phoneNumber;
 	
+	private String kindCompany;
+	
 	private ArrayList<Transaction> transactions;
 	
 	private ArrayList<Account> accounts;
@@ -49,6 +51,10 @@ public class Company {
 	
 	public String getPhoneNumber() {
 		return phoneNumber;
+	}
+	
+	public String getKindCompany() {
+		return kindCompany;
 	}
 	
 	public ArrayList<Transaction> getTransactions() {
@@ -83,6 +89,10 @@ public class Company {
 		this.phoneNumber = phoneNumber;
 	}
 	
+	public void setKindCompany(String kindCompany) {
+		this.kindCompany = kindCompany;
+	}
+	
 	public void setTransactions(ArrayList<Transaction> transactions) {
 		this.transactions = transactions;
 	}
@@ -99,15 +109,17 @@ public class Company {
 	
 	// METODO CONSTRUCTOR DE LA CLASE COMPANY
 	
-	public Company(String nit, String name, String address, String phoneNumber) {
+	public Company(String nit, String name, String address, String phoneNumber, String kindCompany) {
 		
-		NIT = nit;
+		this.NIT = nit;
 		
 		this.name = name;
 		
-		Address = address;
+		this.Address = address;
 		
 		this.phoneNumber = phoneNumber;
+		
+		this.kindCompany = kindCompany;
 		
 		transactions = new ArrayList<>();
 		

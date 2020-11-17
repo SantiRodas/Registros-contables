@@ -9,20 +9,45 @@
 
 package application;
 
+import exceptions.InsufficientInformationException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import model.Company;
+import model.Controller;
 
 public class ControladoraPrincipal {
+	
+	// ----------------------------------------------------------------------------------
+	
+	// RELACIONES CON LA CLASE CONTROLADORA DEL MODELO
+	
+	private Controller controladora;
+	
+	// ----------------------------------------------------------------------------------
+	
+	// METODO CONSTRUCTOR DE LE CONTROLADORA PRINCIPAL (UI)
+	
+	public ControladoraPrincipal() {
+		
+		
+		
+	}
 
 	// ----------------------------------------------------------------------------------
 
 	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA PRIMERA PANTALLA
+	
+    @FXML
+    private Tab empresa;
 
 	@FXML
 	private TextField agregarNombreEmpresa;
@@ -45,6 +70,9 @@ public class ControladoraPrincipal {
 	// ----------------------------------------------------------------------------------
 
 	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA SEGUNDA PANTALLA
+	
+    @FXML
+    private Tab cuenta;
 
 	@FXML
 	private TextField agregarCodigoCuenta;
@@ -79,13 +107,16 @@ public class ControladoraPrincipal {
 	// ----------------------------------------------------------------------------------
 
 	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA TERCERA PANTALLA
+	
+    @FXML
+    private Tab terceraPersona;
 
 	@FXML
 	private TextField agregarNombrePersona;
 
 	@FXML
 	private TextField agregarIdentificacionPersona;
-	
+
 	@FXML
 	private TextField agregarCelularPersona;
 
@@ -101,6 +132,9 @@ public class ControladoraPrincipal {
 	// ----------------------------------------------------------------------------------
 
 	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA CUARTA PANTALLA
+	
+    @FXML
+    private Tab agregarRegistro;
 
 	@FXML
 	private TextField agregarCodigoRegistro;
@@ -116,7 +150,10 @@ public class ControladoraPrincipal {
 
 	// ----------------------------------------------------------------------------------
 
-	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA CUARTA PANTALLA
+	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA QUINTA PANTALLA
+	
+    @FXML
+    private Tab editarRegistro;
 
 	@FXML
 	private TextField codigoEditarRegitro;
@@ -135,16 +172,60 @@ public class ControladoraPrincipal {
 
 	@FXML
 	private Button botonEditarRegistro;
+
+	@FXML
+	private Button botonValidarRegistro;
+	
+	// ----------------------------------------------------------------------------------
+	
+	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA SEXTA PANTALLA
 	
     @FXML
-    private Button botonValidarRegistro;
-
+    private Tab salida;
+	
 	// ----------------------------------------------------------------------------------
 
 	// METODO ON ACTION EVENT PARA AGREGAR UNA EMPRESA
 
 	@FXML
 	void agregarEmpresa(ActionEvent event) {
+
+		try {
+
+			String NIT = agregarNITEmpresa.getText();
+
+			String name = agregarNombreRegistro.getText();
+
+			String direccion = agregarDireccionEmpresa.getText();
+
+			String telefono = agregarTelefonoEmpresa.getText();
+
+			String tipoEmpresa = agregarTipoEmpresa.getValue();
+			
+			if(NIT.isEmpty() || name.isEmpty() || direccion.isEmpty() ||
+			telefono.isEmpty() || tipoEmpresa.isEmpty()) {
+				
+				throw new InsufficientInformationException();
+				
+			} else {
+				
+				Company company = new Company(NIT, name, direccion, telefono, tipoEmpresa);
+				
+				controladora.setCompany(company);
+				
+				confirmacion();
+				
+				cuenta.setDisable(false);
+				
+				empresa.setDisable(true);
+				
+			}
+
+		} catch(InsufficientInformationException e1) {
+			
+			errorDatosVacios();
+
+		}
 
 	}
 
@@ -185,22 +266,70 @@ public class ControladoraPrincipal {
 	}
 
 	// ----------------------------------------------------------------------------------
-	
-	// METODO ON ACTION EVENT PARA EDITAR UN REGISTRO
-	
-    @FXML
-    void editarRegistro(ActionEvent event) {
 
-    }
+	// METODO ON ACTION EVENT PARA EDITAR UN REGISTRO
+
+	@FXML
+	void editarRegistro(ActionEvent event) {
+
+	}
+
+	// ----------------------------------------------------------------------------------
+
+	// METODO ON ACTION EVENT PARA VALIDAR UN REGISTRO
+
+	@FXML
+	void validarRegistro(ActionEvent event) {
+
+	}
+
+	// ----------------------------------------------------------------------------------
+	
+	// MENSAJE DE CONFIRMACION
+	
+	public void confirmacion() {
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Informacion");
+		alert.setHeaderText(null);
+		alert.setContentText("Se agrego correctamente la compañia");
+
+		alert.showAndWait();
+		
+	}
+
+	// ----------------------------------------------------------------------------------
+	
+	// MENSAJE DE ERROR CUANDO LOS DATOS ESTAN VACIOS
+	
+	public void errorDatosVacios() {
+		
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Lo sentimos");
+		alert.setHeaderText("No se agrego correctamente la compañia");
+		alert.setContentText("Verifique si todos los campos estan digitados");
+
+		alert.showAndWait();
+		
+	}
 	
 	// ----------------------------------------------------------------------------------
-    
-    // METODO ON ACTION EVENT PARA VALIDAR UN REGISTRO
-    
-    @FXML
-    void validarRegistro(ActionEvent event) {
-
-    }
+	
+	// METODO INITIALIZE
+	
+	public void initialize() {
+		
+		cuenta.setDisable(true);
+		terceraPersona.setDisable(true);
+		agregarRegistro.setDisable(true);
+		editarRegistro.setDisable(true);
+		salida.setDisable(true);
+		
+		agregarTipoEmpresa.getItems().add("Manufactura");
+		agregarTipoEmpresa.getItems().add("Servicio");
+		agregarTipoEmpresa.getItems().add("Comercio");
+		
+	}
 	
 	// ----------------------------------------------------------------------------------
 

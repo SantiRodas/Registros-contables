@@ -47,19 +47,11 @@ public class Controller {
 	
 	// METODO ADD COMPANY
 	
-	public boolean addCompany(String NIT, String name, String address, String phoneNumber) {
+	public void addCompany(String NIT, String name, String address, String phoneNumber, String kindCompany) {
 		
-		if(NIT.isEmpty() || name.isEmpty() || address.isEmpty() || phoneNumber.isEmpty()) {
-			
-			return false;
-			
-		}
-		
-		Company company = new Company(NIT, name, address, phoneNumber);
+		Company company = new Company(NIT, name, address, phoneNumber, kindCompany);
 		
 		setCompany(company);
-		
-		return true;
 		
 	}
 	

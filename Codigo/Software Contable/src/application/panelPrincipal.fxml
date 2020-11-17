@@ -17,7 +17,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="678.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
-    <Tab text="Empresa">
+    <Tab fx:id="empresa" text="Empresa">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -69,7 +69,7 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Cuenta">
+      <Tab fx:id="cuenta" text="Cuenta">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -164,7 +164,7 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab text="Persona tercera">
+      <Tab fx:id="terceraPersona" text="Persona tercera">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -220,7 +220,7 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab text="Agregar registro">
+      <Tab fx:id="agregarRegistro" text="Agregar registro">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -261,7 +261,7 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab text="Editar registro">
+      <Tab fx:id="editarRegistro" text="Editar registro">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -325,7 +325,7 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab text="Salida">
+      <Tab fx:id="salida" text="Salida">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
