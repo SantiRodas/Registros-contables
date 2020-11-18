@@ -9,6 +9,7 @@
 
 package application;
 
+import exceptions.InformationExistsException;
 import exceptions.InsufficientInformationException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -215,7 +216,53 @@ public class ControladoraPrincipal {
 	// METODO ON ACTION EVENT PARA AGREGAR UNA CUENTA
 
 	@FXML
-	void agregarCuenta(ActionEvent event) {
+	void agregarCuenta(ActionEvent event) throws InformationExistsException {
+		
+		try {
+			
+			String codigo = agregarCodigoCuenta.getText();
+			
+			String nombre = agregarNombreCuenta.getText();
+			
+			String grupo = grupoCuenta.getValue();
+			
+			if(codigo.isEmpty() || nombre.isEmpty() || grupo.isEmpty()) {
+				
+				throw new InsufficientInformationException();
+				
+			} else {
+				
+				controladora.getCompany().agregarCuenta(codigo, nombre, grupo);
+				
+				agregarCodigoCuenta.setText("");
+				
+				agregarNombreCuenta.setText("");
+				
+				confirmacion();
+				
+				terceraPersona.setDisable(false);
+				
+			}
+			
+		} catch(InsufficientInformationException e1) {
+			
+			errorDatosVacios();
+			
+		} catch(InformationExistsException e2) {
+			
+			errorDatosExistentes();
+			
+		/*
+		 * SE DEBE DE ATRAPAR UN NULL POINTER POR QUE SE ESTA USANDO UN CHOICE BOX.
+		 * ENTONCES, POR MEDIO DE ESTA ACCION VERIFICAMOS SI EL USUARIO SELECCIONO O NO 
+		 * ESTA OPCION TAN IMPORTANTE EN EL SISTEMA.
+		 */
+			
+		} catch(NullPointerException e3) {
+			
+			errorDatosVacios();
+			
+		}
 
 	}
 
@@ -264,7 +311,7 @@ public class ControladoraPrincipal {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Informacion");
 		alert.setHeaderText(null);
-		alert.setContentText("Se agrego correctamente la compañia");
+		alert.setContentText("Se agrego correctamente al sistema");
 
 		alert.showAndWait();
 		
@@ -280,6 +327,21 @@ public class ControladoraPrincipal {
 		alert.setTitle("Lo sentimos");
 		alert.setHeaderText("No se agrego correctamente la compañia");
 		alert.setContentText("Verifique si todos los campos estan digitados");
+
+		alert.showAndWait();
+		
+	}
+	
+	// ----------------------------------------------------------------------------------
+	
+	// MENSAJE DE ERROR CUANDO LOS DATOS YA EXISTAN
+	
+	public void errorDatosExistentes() {
+		
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Lo sentimos");
+		alert.setHeaderText("No se agrego correctamente la compañia");
+		alert.setContentText("Los datos digitados ya existen en el sistema");
 
 		alert.showAndWait();
 		

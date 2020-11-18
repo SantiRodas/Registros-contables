@@ -21,8 +21,6 @@ public class Account {
 	
 	private String group;
 	
-	private boolean resultAccount;
-	
 	// ----------------------------------------------------------------------------------
 	
 	// METODOS GET DE LA CLASE ACCOUNT
@@ -37,10 +35,6 @@ public class Account {
 	
 	public String getGroup() {
 		return group;
-	}
-	
-	public boolean isResultAccount() {
-		return resultAccount;
 	}
 	
 	// ----------------------------------------------------------------------------------
@@ -59,23 +53,17 @@ public class Account {
 		this.group = group;
 	}
 	
-	public void setResultAccount(boolean resultAccount) {
-		this.resultAccount = resultAccount;
-	}
-	
 	// ----------------------------------------------------------------------------------
 	
 	// METODO CONSTRUCTOR DE LA CLASE ACCOUNT
 	
-	public Account(String code, String name, String group, boolean resultAccount) {
+	public Account(String code, String name, String group) {
 		
 		this.code = code;
 		
 		this.name = name;
 		
 		this.group = group;
-		
-		this.resultAccount = resultAccount;
 		
 	}
 	
