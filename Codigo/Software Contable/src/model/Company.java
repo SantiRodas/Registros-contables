@@ -33,7 +33,7 @@ public class Company {
 
 	private ArrayList<Account> accounts;
 
-	private ArrayList<ThirdParty> thirdParties;
+	private ArrayList<ThirdParty> thirdPeople;
 
 	// ----------------------------------------------------------------------------------
 
@@ -67,8 +67,8 @@ public class Company {
 		return accounts;
 	}
 
-	public ArrayList<ThirdParty> getThirdParties() {
-		return thirdParties;
+	public ArrayList<ThirdParty> getThirdPeople() {
+		return thirdPeople;
 	}
 
 	// ----------------------------------------------------------------------------------
@@ -103,8 +103,8 @@ public class Company {
 		this.accounts = accounts;
 	}
 
-	public void setThirdParties(ArrayList<ThirdParty> thirdParties) {
-		this.thirdParties = thirdParties;
+	public void setThirdPeople(ArrayList<ThirdParty> thirdPeople) {
+		this.thirdPeople = thirdPeople;
 	}
 
 	// ----------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ public class Company {
 
 		accounts = new ArrayList<Account>();
 
-		thirdParties = new ArrayList<ThirdParty>();
+		thirdPeople = new ArrayList<ThirdParty>();
 
 	}
 
@@ -154,6 +154,28 @@ public class Company {
 
 	}
 
+	// ----------------------------------------------------------------------------------
+	
+	// METODO PARA AGREGAR UNA TERCERA PERSONA AL SISTEMA
+	
+	public boolean agregarPersona(String codigo, String nombre, String telefono) throws InformationExistsException {
+		
+		for(int i = 0 ; i < thirdPeople.size() ; i ++) {
+			
+			if(codigo.equalsIgnoreCase(thirdPeople.get(i).getCode())) {
+				
+				throw new InformationExistsException();
+				
+			}
+			
+		}
+		
+		thirdPeople.add(new ThirdParty(nombre, codigo, telefono));
+		
+		return true;
+		
+	}
+	
 	// ----------------------------------------------------------------------------------
 
 }

@@ -15,9 +15,11 @@ public class ThirdParty {
 	
 	// ATRIBUTOS DE LA CLASE THIRD PARTY
 	
+	private String name;
+	
 	private String code;
 	
-	private String name;
+	private String phone;
 	
 	// ----------------------------------------------------------------------------------
 	
@@ -29,6 +31,10 @@ public class ThirdParty {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public String getPhone() {
+		return phone;
 	}
 	
 	// ----------------------------------------------------------------------------------
@@ -43,15 +49,21 @@ public class ThirdParty {
 		this.name = name;
 	}
 	
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 	// ----------------------------------------------------------------------------------
 	
 	// METODO CONSTRUCTOR DE LA CLASE THIRD PARTY
 	
-	public ThirdParty(String code, String name) {
+	public ThirdParty(String name, String code, String phone) {
+		
+		this.name = name;
 
 		this.code = code;
 		
-		this.name = name;
+		this.phone = phone;
 	
 	}
 	

@@ -18,7 +18,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import model.Company;
@@ -103,12 +102,6 @@ public class ControladoraPrincipal {
 	private TextField agregarCelularPersona;
 
 	@FXML
-	private RadioButton naturalRB;
-
-	@FXML
-	private RadioButton juridicaRB;
-
-	@FXML
 	private Button botonAgregarPersona;
 
 	// ----------------------------------------------------------------------------------
@@ -126,6 +119,12 @@ public class ControladoraPrincipal {
 
 	@FXML
 	private TextField agregarMonedaRegistro;
+	
+    @FXML
+    private ChoiceBox<String> cuentaPerteneceCB;
+
+    @FXML
+    private ChoiceBox<String> terceroInvolucradoCB;
 
 	@FXML
 	private Button botonAgregarRegistro;
@@ -184,7 +183,7 @@ public class ControladoraPrincipal {
 
 			String tipoEmpresa = agregarTipoEmpresa.getValue();
 			
-			if(NIT.isEmpty() || name.isEmpty() || direccion.isEmpty() ||
+			if(NIT.isEmpty() || NIT.length() != 13 || name.isEmpty() || direccion.isEmpty() ||
 			telefono.isEmpty() || tipoEmpresa.isEmpty()) {
 				
 				throw new InsufficientInformationException();
@@ -271,7 +270,45 @@ public class ControladoraPrincipal {
 	// METODO ON ACTION EVENT PARA AGREGAR UNA PERSONA
 
 	@FXML
-	void agregarPersona(ActionEvent event) {
+	void agregarPersona(ActionEvent event) throws InformationExistsException {
+		
+		try {
+			
+			String codigo = agregarIdentificacionPersona.getText();
+			
+			String nombre = agregarNombrePersona.getText();
+			
+			String telefono = agregarCelularPersona.getText();
+			
+			if(codigo.isEmpty() || nombre.isEmpty() || telefono.isEmpty()) {
+				
+				throw new InsufficientInformationException();
+				
+			} else {
+				
+				controladora.getCompany().agregarPersona(codigo, nombre, telefono);
+				
+				agregarIdentificacionPersona.setText("");
+				
+				agregarNombrePersona.setText("");
+				
+				agregarCelularPersona.setText("");
+				
+				confirmacion();
+				
+				agregarRegistro.setDisable(false);
+				
+			}
+			
+		} catch(InsufficientInformationException e1) {
+			
+			errorDatosVacios();
+			
+		} catch(InformationExistsException e2) {
+			
+			errorDatosExistentes();
+			
+		}
 
 	}
 
@@ -326,7 +363,7 @@ public class ControladoraPrincipal {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Lo sentimos");
 		alert.setHeaderText("No se agrego correctamente la compañia");
-		alert.setContentText("Verifique si todos los campos estan digitados");
+		alert.setContentText("Verifique si todos los campos estan bien digitados");
 
 		alert.showAndWait();
 		
