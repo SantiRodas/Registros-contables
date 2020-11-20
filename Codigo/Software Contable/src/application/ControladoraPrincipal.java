@@ -21,8 +21,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
+import model.Account;
 import model.Company;
 import model.Controller;
+import model.ThirdParty;
 
 public class ControladoraPrincipal {
 	
@@ -120,13 +123,13 @@ public class ControladoraPrincipal {
 	
 
     @FXML
-    private ComboBox<String> cuenta1;
+    private ComboBox<Account> cuenta1;
 
     @FXML
-    private ComboBox<String> cuenta2;
+    private ComboBox<Account> cuenta2;
 
     @FXML
-    private ComboBox<String> cuenta3;
+    private ComboBox<Account> cuenta3;
 	
 	@FXML
 	private TextField agregarMonedaRegistro1;
@@ -138,7 +141,7 @@ public class ControladoraPrincipal {
 	private TextField agregarMonedaRegistro3;
 
     @FXML
-    private ComboBox<String> personaInvolucrada;
+    private ComboBox<ThirdParty> personaInvolucrada;
 
 	@FXML
 	private Button botonAgregarRegistro;
@@ -245,7 +248,9 @@ public class ControladoraPrincipal {
 				
 			} else {
 				
-				controladora.getCompany().agregarCuenta(codigo, nombre, grupo);
+				Account cuenta=new Account(codigo, nombre, grupo);
+				
+				controladora.getCompany().agregarCuenta(cuenta);
 				
 				agregarCodigoCuenta.setText("");
 				
@@ -254,6 +259,8 @@ public class ControladoraPrincipal {
 				confirmacion();
 				
 				terceraPersona.setDisable(false);
+				
+				cargarCuentas(cuenta);
 				
 			}
 			
@@ -300,7 +307,9 @@ public class ControladoraPrincipal {
 				
 			} else {
 				
-				controladora.getCompany().agregarPersona(codigo, nombre, telefono);
+				ThirdParty persona=new ThirdParty(nombre, codigo, telefono);
+				
+				controladora.getCompany().agregarPersona(persona);
 				
 				agregarIdentificacionPersona.setText("");
 				
@@ -309,6 +318,8 @@ public class ControladoraPrincipal {
 				agregarCelularPersona.setText("");
 				
 				confirmacion();
+				
+				personaInvolucrada.getItems().add(persona);
 				
 				agregarRegistro.setDisable(false);
 				
@@ -339,16 +350,11 @@ public class ControladoraPrincipal {
 	
 	// METODO ON ACTION PARA CARGAR LA INFORMACION DE LA CUENTA 1
 	
-    @FXML
-    void cargarInformacion1(ActionEvent event) {
+    void cargarCuentas(Account cuenta) {
     	
-    	// ESTE ES EL METODO DONDE TENGO EL PROBLEMA Y NO SE COMO SOLUCINARLO
-    	
-    	for(int i = 0 ; i < controladora.getCompany().getAccounts().size() ; i ++) {
-    		
-    		cuenta1.getItems().add(controladora.getCompany().getAccounts().get(i).getName());
-    		
-    	}
+    	cuenta1.getItems().add(cuenta);
+    	cuenta2.getItems().add(cuenta);
+    	cuenta3.getItems().add(cuenta);
 
     }
 	

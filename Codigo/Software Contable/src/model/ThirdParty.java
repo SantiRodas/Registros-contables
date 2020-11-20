@@ -66,7 +66,14 @@ public class ThirdParty {
 		this.phone = phone;
 	
 	}
+
+	@Override
+	public String toString() {
+		return code +": " + name;
+	}
 	
 	// ----------------------------------------------------------------------------------
+	
+	
 
 }

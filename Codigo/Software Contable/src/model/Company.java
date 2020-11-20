@@ -135,12 +135,12 @@ public class Company {
 
 	// METODO PARA AGREGAR UNA CUENTA A LA COMPAÑIA
 
-	public boolean agregarCuenta(String codigo, String nombre, String grupo ) throws InformationExistsException {
+	public boolean agregarCuenta(Account cuenta ) throws InformationExistsException {
 
 		for(int i = 0 ; i < accounts.size() ; i ++) {
 
-			if(codigo.equalsIgnoreCase(accounts.get(i).getCode()) ||
-			nombre.equalsIgnoreCase(accounts.get(i).getName())) {
+			if(cuenta.getCode().equalsIgnoreCase(accounts.get(i).getCode()) ||
+			cuenta.getName().equalsIgnoreCase(accounts.get(i).getName())) {
 				
 				throw new InformationExistsException();
 				
@@ -148,7 +148,7 @@ public class Company {
 
 		}
 
-		accounts.add(new Account(codigo, nombre, grupo));
+		accounts.add(cuenta);
 
 		return true;
 
@@ -158,11 +158,11 @@ public class Company {
 	
 	// METODO PARA AGREGAR UNA TERCERA PERSONA AL SISTEMA
 	
-	public boolean agregarPersona(String codigo, String nombre, String telefono) throws InformationExistsException {
+	public boolean agregarPersona(ThirdParty persona) throws InformationExistsException {
 		
 		for(int i = 0 ; i < thirdPeople.size() ; i ++) {
 			
-			if(codigo.equalsIgnoreCase(thirdPeople.get(i).getCode())) {
+			if(persona.getCode().equalsIgnoreCase(thirdPeople.get(i).getCode())) {
 				
 				throw new InformationExistsException();
 				
@@ -170,7 +170,7 @@ public class Company {
 			
 		}
 		
-		thirdPeople.add(new ThirdParty(nombre, codigo, telefono));
+		thirdPeople.add(persona);
 		
 		return true;
 		

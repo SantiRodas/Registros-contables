@@ -66,7 +66,14 @@ public class Account {
 		this.group = group;
 		
 	}
+
+	@Override
+	public String toString() {
+		return  group+"-"+code+": "+name;
+	}
 	
 	// ----------------------------------------------------------------------------------
+	
+	
 
 }
