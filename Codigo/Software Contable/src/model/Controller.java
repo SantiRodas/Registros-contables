@@ -44,17 +44,5 @@ public class Controller {
 	}
 	
 	// ----------------------------------------------------------------------------------
-	
-	// METODO ADD COMPANY
-	
-	public void addCompany(String NIT, String name, String address, String phoneNumber, String kindCompany) {
-		
-		Company company = new Company(NIT, name, address, phoneNumber, kindCompany);
-		
-		setCompany(company);
-		
-	}
-	
-	// ----------------------------------------------------------------------------------
 
 }

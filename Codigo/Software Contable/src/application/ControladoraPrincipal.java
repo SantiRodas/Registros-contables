@@ -18,6 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import model.Company;
@@ -116,15 +117,28 @@ public class ControladoraPrincipal {
 
 	@FXML
 	private TextField agregarNombreRegistro;
-
-	@FXML
-	private TextField agregarMonedaRegistro;
 	
-    @FXML
-    private ChoiceBox<String> cuentaPerteneceCB;
 
     @FXML
-    private ChoiceBox<String> terceroInvolucradoCB;
+    private ComboBox<String> cuenta1;
+
+    @FXML
+    private ComboBox<String> cuenta2;
+
+    @FXML
+    private ComboBox<String> cuenta3;
+	
+	@FXML
+	private TextField agregarMonedaRegistro1;
+	
+	@FXML
+	private TextField agregarMonedaRegistro2;
+	
+	@FXML
+	private TextField agregarMonedaRegistro3;
+
+    @FXML
+    private ComboBox<String> personaInvolucrada;
 
 	@FXML
 	private Button botonAgregarRegistro;
@@ -320,7 +334,24 @@ public class ControladoraPrincipal {
 	void agregarRegistro(ActionEvent event) {
 
 	}
+	
+	// ----------------------------------------------------------------------------------
+	
+	// METODO ON ACTION PARA CARGAR LA INFORMACION DE LA CUENTA 1
+	
+    @FXML
+    void cargarInformacion1(ActionEvent event) {
+    	
+    	// ESTE ES EL METODO DONDE TENGO EL PROBLEMA Y NO SE COMO SOLUCINARLO
+    	
+    	for(int i = 0 ; i < controladora.getCompany().getAccounts().size() ; i ++) {
+    		
+    		cuenta1.getItems().add(controladora.getCompany().getAccounts().get(i).getName());
+    		
+    	}
 
+    }
+	
 	// ----------------------------------------------------------------------------------
 
 	// METODO ON ACTION EVENT PARA EDITAR UN REGISTRO
