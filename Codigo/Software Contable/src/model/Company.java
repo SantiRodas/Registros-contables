@@ -30,6 +30,8 @@ public class Company {
 	private String kindCompany;
 
 	private ArrayList<Account> accounts;
+	
+	private ArrayList<Transaction> registros; 
 
 	private ArrayList<ThirdParty> thirdPeople;
 
@@ -59,6 +61,10 @@ public class Company {
 
 	public ArrayList<Account> getAccounts() {
 		return accounts;
+	}
+	
+	public ArrayList<Transaction> getRegistros() {
+		return registros;
 	}
 
 	public ArrayList<ThirdParty> getThirdPeople() {
@@ -92,6 +98,10 @@ public class Company {
 	public void setAccounts(ArrayList<Account> accounts) {
 		this.accounts = accounts;
 	}
+	
+	public void setRegistros(ArrayList<Transaction> registros) {
+		this.registros = registros;
+	}
 
 	public void setThirdPeople(ArrayList<ThirdParty> thirdPeople) {
 		this.thirdPeople = thirdPeople;
@@ -114,6 +124,8 @@ public class Company {
 		this.kindCompany = kindCompany;
 
 		accounts = new ArrayList<Account>();
+		
+		registros = new ArrayList<Transaction>();
 
 		thirdPeople = new ArrayList<ThirdParty>();
 
@@ -159,6 +171,29 @@ public class Company {
 		}
 		
 		thirdPeople.add(persona);
+		
+		return true;
+		
+	}
+	
+	// ----------------------------------------------------------------------------------
+	
+	// METODO PARA AGREGAR REGISTRO A UNA CUENTA SELECCIONADA
+	
+	public boolean agregarRegistro(Transaction registro) throws InformationExistsException {
+		
+		for(int i = 0 ; i < registros.size() ; i ++) {
+			
+			if(registros.get(i).getNumeroRegistro().equalsIgnoreCase(registro.getNumeroRegistro()) ||
+			registros.get(i).getNombre().equalsIgnoreCase(registro.getNombre())) {
+				
+				throw new InformationExistsException();
+				
+			} 
+			
+		}
+		
+		registros.add(registro);
 		
 		return true;
 		

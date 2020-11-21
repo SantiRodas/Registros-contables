@@ -21,7 +21,7 @@ public class Transaction {
 	
 	private String nombre;
 	
-	private ArrayList<String> nombresCuentas;
+	private ArrayList<Account> cuentas;
 
 	private ArrayList<Double> valoresCuentas; 
 	
@@ -43,8 +43,8 @@ public class Transaction {
 		return thirdParty;
 	}
 	
-	public ArrayList<String> getNombresCuentas() {
-		return nombresCuentas;
+	public ArrayList<Account> getCuentas() {
+		return cuentas;
 	}
 	
 	public ArrayList<Double> getValoresCuentas() {
@@ -67,10 +67,10 @@ public class Transaction {
 		this.thirdParty = thirdParty;
 	}
 	
-	public void setNombresCuentas(ArrayList<String> nombresCuentas) {
-		this.nombresCuentas = nombresCuentas;
+	public void setCuentas(ArrayList<Account> cuentas) {
+		this.cuentas = cuentas;
 	}
-	
+
 	public void setValoresCuentas(ArrayList<Double> valoresCuentas) {
 		this.valoresCuentas = valoresCuentas;
 	}
@@ -79,7 +79,7 @@ public class Transaction {
 	
 	// METODO CONTRUCTOR DE LA CLASE TRANSACTION
 	
-	public Transaction(String numeroRegistro, String nombre, ArrayList<String> nombresCuentas, ArrayList<Double> valoresCuentas ,ThirdParty thirdParty) {
+	public Transaction(String numeroRegistro, String nombre, ArrayList<Account> cuentas, ArrayList<Double> valoresCuentas ,ThirdParty thirdParty) {
 		
 		this.numeroRegistro = numeroRegistro;
 		
@@ -87,7 +87,7 @@ public class Transaction {
 		
 		this.thirdParty = thirdParty;
 		
-		nombresCuentas = new ArrayList<>();
+		cuentas = new ArrayList<Account>();
 		
 		valoresCuentas = new ArrayList<>();
 
