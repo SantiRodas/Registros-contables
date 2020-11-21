@@ -9,6 +9,10 @@
 
 package model;
 
+import java.util.ArrayList;
+
+import exceptions.InformationExistsException;
+
 public class Account {
 	
 	// ----------------------------------------------------------------------------------
@@ -20,6 +24,8 @@ public class Account {
 	private String name;
 	
 	private String group;
+	
+	private ArrayList<Transaction> transactions;
 	
 	// ----------------------------------------------------------------------------------
 	
@@ -35,6 +41,10 @@ public class Account {
 	
 	public String getGroup() {
 		return group;
+	}
+	
+	public ArrayList<Transaction> getTransactions() {
+		return transactions;
 	}
 	
 	// ----------------------------------------------------------------------------------
@@ -53,6 +63,10 @@ public class Account {
 		this.group = group;
 	}
 	
+	public void setTransactions(ArrayList<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+	
 	// ----------------------------------------------------------------------------------
 	
 	// METODO CONSTRUCTOR DE LA CLASE ACCOUNT
@@ -65,15 +79,44 @@ public class Account {
 		
 		this.group = group;
 		
-	}
-
-	@Override
-	public String toString() {
-		return  group+"-"+code+": "+name;
+		transactions = new ArrayList<>();
+		
 	}
 	
 	// ----------------------------------------------------------------------------------
 	
+	// METODO PARA AGREGAR REGISTRO A UNA CUENTA SELECCIONADA
 	
+	public boolean agregarRegistro(Transaction transaction) throws InformationExistsException {
+		
+		for(int i = 0 ; i < transactions.size() ; i ++) {
+			
+			if(transactions.get(i).getNumeroRegistro().equalsIgnoreCase(transaction.getNumeroRegistro()) ||
+			transactions.get(i).getNombre().equalsIgnoreCase(transaction.getNombre())) {
+				
+				throw new InformationExistsException();
+				
+			} 
+			
+		}
+		
+		transactions.add(transaction);
+		
+		return true;
+		
+	}
+	
+	// ----------------------------------------------------------------------------------
+	
+	// TO STRING METHOD
 
+	@Override
+	public String toString() {
+		
+		return  group + " - " + code + " : " + name;
+		
+	}
+	
+	// ----------------------------------------------------------------------------------
+	
 }

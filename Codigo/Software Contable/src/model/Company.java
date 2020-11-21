@@ -29,8 +29,6 @@ public class Company {
 
 	private String kindCompany;
 
-	private ArrayList<Transaction> transactions;
-
 	private ArrayList<Account> accounts;
 
 	private ArrayList<ThirdParty> thirdPeople;
@@ -57,10 +55,6 @@ public class Company {
 
 	public String getKindCompany() {
 		return kindCompany;
-	}
-
-	public ArrayList<Transaction> getTransactions() {
-		return transactions;
 	}
 
 	public ArrayList<Account> getAccounts() {
@@ -95,10 +89,6 @@ public class Company {
 		this.kindCompany = kindCompany;
 	}
 
-	public void setTransactions(ArrayList<Transaction> transactions) {
-		this.transactions = transactions;
-	}
-
 	public void setAccounts(ArrayList<Account> accounts) {
 		this.accounts = accounts;
 	}
@@ -122,8 +112,6 @@ public class Company {
 		this.phoneNumber = phoneNumber;
 
 		this.kindCompany = kindCompany;
-
-		transactions = new ArrayList<>();
 
 		accounts = new ArrayList<Account>();
 
@@ -177,5 +165,5 @@ public class Company {
 	}
 	
 	// ----------------------------------------------------------------------------------
-
+	
 }
