@@ -10,13 +10,19 @@
 package application;
 
 import java.util.ArrayList;
+
+import com.sun.deploy.uitoolkit.impl.fx.ui.FXConsole;
+
 import exceptions.InformationExistsException;
 import exceptions.InsufficientAccountsExcetion;
 import exceptions.InsufficientInformationException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -30,6 +36,7 @@ import model.Company;
 import model.Controller;
 import model.ThirdParty;
 import model.Transaction;
+import model.TransactionTableModel;
 
 public class ControladoraPrincipal {
 
@@ -38,6 +45,7 @@ public class ControladoraPrincipal {
 	// RELACIONES CON LA CLASE CONTROLADORA DEL MODELO
 
 	private Controller controladora;
+	private ObservableList<TransactionTableModel> transactionTableModels;
 
 	// ----------------------------------------------------------------------------------
 
@@ -166,34 +174,34 @@ public class ControladoraPrincipal {
 	private Tab registros;
 	
 	@FXML
-    private TableView<Transaction> tablaDeRegistros;
+    private TableView<TransactionTableModel> tablaDeRegistros;
 
     @FXML
-    private TableColumn<Transaction, String> nrt;
+    private TableColumn<TransactionTableModel, String> nrt;
 
     @FXML
-    private TableColumn<Transaction, String> nt;
+    private TableColumn<TransactionTableModel, String> nt;
 
     @FXML
-    private TableColumn<Transaction, String> c1t;
+    private TableColumn<TransactionTableModel, String> c1t;
 
     @FXML
-    private TableColumn<Transaction, Double> v1t;
+    private TableColumn<TransactionTableModel, Double> v1t;
 
     @FXML
-    private TableColumn<Transaction, String> c2t;
+    private TableColumn<TransactionTableModel, String> c2t;
 
     @FXML
-    private TableColumn<Transaction, Double> v2t;
+    private TableColumn<TransactionTableModel, Double> v2t;
 
     @FXML
-    private TableColumn<Transaction, String> c3t;
+    private TableColumn<TransactionTableModel, String> c3t;
 
     @FXML
-    private TableColumn<Transaction, Double> v3t;
+    private TableColumn<TransactionTableModel, Double> v3t;
 
     @FXML
-    private TableColumn<Transaction, String> tpp;
+    private TableColumn<TransactionTableModel, String> tpp;
 	
 	// ----------------------------------------------------------------------------------
 	
@@ -497,6 +505,13 @@ public class ControladoraPrincipal {
 				
 				confirmacion();
 				
+				//AGREGAR DATOS A TABLA
+				
+				TransactionTableModel model=TransactionTableModel.fromTransaction(registro);
+				transactionTableModels.add(model);
+				tablaDeRegistros.setItems(transactionTableModels);
+				tablaDeRegistros.refresh();
+				
 			}
 			
 			// DIFERENTES CATCH QUE SE LE HACEN A DIFERENTES EXCEPCIONES
@@ -678,13 +693,29 @@ public class ControladoraPrincipal {
 		// ******************************************************************************
 
 		controladora = new Controller(null);
+		
+		transactionTableModels= FXCollections.observableArrayList(
+				//new TransactionTableModel("a", "a", "a", 1.0, "a", 1.0, "a", 1.0, "a")
+				);
+		
+		nrt.setCellValueFactory(new PropertyValueFactory<>("Nrt"));
+		nt.setCellValueFactory(new PropertyValueFactory<>("Nt"));
+		c1t.setCellValueFactory(new PropertyValueFactory<>("C1t"));
+		v1t.setCellValueFactory(new PropertyValueFactory<>("V1t"));
+		c2t.setCellValueFactory(new PropertyValueFactory<>("C2t"));
+		v2t.setCellValueFactory(new PropertyValueFactory<>("V2t"));
+		c3t.setCellValueFactory(new PropertyValueFactory<>("C3t"));
+		v3t.setCellValueFactory(new PropertyValueFactory<>("V3t"));
+		tpp.setCellValueFactory(new PropertyValueFactory<>("Tpp"));
+		tablaDeRegistros.setItems(transactionTableModels);
+		
 
 		// ******************************************************************************
 
 		cuenta.setDisable(true);
 		terceraPersona.setDisable(true);
 		agregarRegistro.setDisable(true);
-		registros.setDisable(true);
+		registros.setDisable(false);
 		salida.setDisable(true);
 
 		// ******************************************************************************

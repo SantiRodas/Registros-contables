@@ -87,9 +87,9 @@ public class Transaction {
 		
 		this.thirdParty = thirdParty;
 		
-		cuentas = new ArrayList<Account>();
+		this.cuentas = cuentas;
 		
-		valoresCuentas = new ArrayList<>();
+		this.valoresCuentas = valoresCuentas;
 
 	}
 	
