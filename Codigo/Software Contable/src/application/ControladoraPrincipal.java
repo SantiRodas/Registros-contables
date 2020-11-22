@@ -10,9 +10,6 @@
 package application;
 
 import java.util.ArrayList;
-
-import com.sun.deploy.uitoolkit.impl.fx.ui.FXConsole;
-
 import exceptions.InformationExistsException;
 import exceptions.InsufficientAccountsExcetion;
 import exceptions.InsufficientInformationException;
@@ -45,6 +42,7 @@ public class ControladoraPrincipal {
 	// RELACIONES CON LA CLASE CONTROLADORA DEL MODELO
 
 	private Controller controladora;
+	
 	private ObservableList<TransactionTableModel> transactionTableModels;
 
 	// ----------------------------------------------------------------------------------
@@ -694,9 +692,11 @@ public class ControladoraPrincipal {
 
 		controladora = new Controller(null);
 		
+		// ******************************************************************************
+		
 		transactionTableModels= FXCollections.observableArrayList(
 				//new TransactionTableModel("a", "a", "a", 1.0, "a", 1.0, "a", 1.0, "a")
-				);
+		);
 		
 		nrt.setCellValueFactory(new PropertyValueFactory<>("Nrt"));
 		nt.setCellValueFactory(new PropertyValueFactory<>("Nt"));
