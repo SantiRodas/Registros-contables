@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -207,7 +208,39 @@ public class ControladoraPrincipal {
 	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA SEXTA PANTALLA
 
 	@FXML
-	private Tab salida;
+	private Tab balance;
+	
+    @FXML
+    private TableView<TransactionTableModel> balanceTabla;
+
+    @FXML
+    private TableColumn<TransactionTableModel, String> columnaCuenta;
+
+    @FXML
+    private TableColumn<TransactionTableModel, Double> columnaEntrada;
+
+    @FXML
+    private TableColumn<TransactionTableModel, Double> columnaSalida;
+
+    @FXML
+    private Label entradaTotal;
+
+    @FXML
+    private Label salidaTotal;
+	
+	// ----------------------------------------------------------------------------------
+	
+	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA SEPTIMA PANTALLA
+	
+	@FXML
+	private Tab s2;
+	
+	// ----------------------------------------------------------------------------------
+	
+	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA OCTAVA PANTALLA
+	
+	@FXML
+	private Tab s3;
 
 	// ----------------------------------------------------------------------------------
 
@@ -502,6 +535,8 @@ public class ControladoraPrincipal {
 				
 				registros.setDisable(false);
 				
+				balance.setDisable(false);
+				
 				confirmacion();
 				
 				//AGREGAR DATOS A TABLA
@@ -608,24 +643,6 @@ public class ControladoraPrincipal {
 
 	// ----------------------------------------------------------------------------------
 
-	// METODO ON ACTION EVENT PARA EDITAR UN REGISTRO
-
-	@FXML
-	void editarRegistro(ActionEvent event) {
-
-	}
-
-	// ----------------------------------------------------------------------------------
-
-	// METODO ON ACTION EVENT PARA VALIDAR UN REGISTRO
-
-	@FXML
-	void validarRegistro(ActionEvent event) {
-
-	}
-
-	// ----------------------------------------------------------------------------------
-
 	// MENSAJE DE CONFIRMACION
 
 	public void confirmacion() {
@@ -718,8 +735,10 @@ public class ControladoraPrincipal {
 		cuenta.setDisable(true);
 		terceraPersona.setDisable(true);
 		agregarRegistro.setDisable(true);
-		registros.setDisable(false);
-		salida.setDisable(true);
+		registros.setDisable(true);
+		balance.setDisable(true);
+		s2.setDisable(true);
+		s3.setDisable(true);
 
 		// ******************************************************************************
 
