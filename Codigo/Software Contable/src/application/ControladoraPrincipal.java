@@ -34,6 +34,7 @@ import model.Controller;
 import model.ThirdParty;
 import model.Transaction;
 import model.TransactionTableModel;
+import modules.ReportsModule;
 
 public class ControladoraPrincipal {
 
@@ -509,6 +510,8 @@ public class ControladoraPrincipal {
 				transactionTableModels.add(model);
 				tablaDeRegistros.setItems(transactionTableModels);
 				tablaDeRegistros.refresh();
+				
+				ReportsModule.testBalance(controladora.getCompany().getRegistros());
 				
 			}
 			
