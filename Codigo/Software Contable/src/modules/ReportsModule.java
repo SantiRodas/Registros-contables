@@ -12,6 +12,8 @@ package modules;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
+
+import model.AccountSummary;
 import model.Transaction;
 
 public class ReportsModule {
@@ -85,5 +87,85 @@ public class ReportsModule {
 	}
 	
 	// ----------------------------------------------------------------------------------
+	
+	//ESTADO DE RESULTADOS
+	
+	public static ArrayList<ArrayList<AccountSummary>> stateOfIncome(ArrayList<Transaction> transactions) {
+		
+		Map<String,AccountSummary> summary= accountSummary(transactions);
+		
+		ArrayList<AccountSummary> assets=new ArrayList<AccountSummary>();
+		ArrayList<AccountSummary> liabilities=new ArrayList<AccountSummary>();
+		ArrayList<AccountSummary> networth=new ArrayList<AccountSummary>();
+		
+		summary.forEach((k,v)->{
+			switch (v.getGroup()) {
+			case "Activos":
+				assets.add(v);
+				break;
+			case "Pasivos":
+				liabilities.add(v);
+				break;
+			case "Patrimonios":
+				networth.add(v);
+				break;
+			default:
+				break;
+			}
+		});
+		
+		double totalAssets=0;
+		double totalLiabilities=0;
+		double totalNetworth=0;
+		
+		for (AccountSummary asset : assets) {
+			totalAssets+=asset.getTotalValue();
+		}
+		for (AccountSummary net : networth) {
+			totalNetworth+=net.getTotalValue();
+		}
+		for (AccountSummary liability : liabilities) {
+			totalLiabilities+=liability.getTotalValue();
+		}
+		assets.add(new AccountSummary("Total Activos", "", totalAssets));
+		liabilities.add(new AccountSummary("Total Pasivos", "", totalLiabilities));
+		networth.add(new AccountSummary("Total Patrimonio", "", totalNetworth));
+		
+		ArrayList<ArrayList<AccountSummary>> result=new ArrayList<ArrayList<AccountSummary>>();
+		result.add(assets);
+		result.add(liabilities);
+		result.add(networth);
+		
+		return result;
+		
+	}
+	
+	// ----------------------------------------------------------------------------------
+	
+	//RESUMEN DE CUENTAS
+	
+	private static Map<String,AccountSummary> accountSummary(ArrayList<Transaction> transactions) {
+		
+		Map<String,AccountSummary> map=new Hashtable<String, AccountSummary>();
+		
+		for (Transaction transaction : transactions) {
+			for (int i = 0; i < transaction.getCuentas().size(); i++) {
+				
+				if(map.containsKey(transaction.getCuentas().get(i).getName())) {
+					map.get(transaction.getCuentas().get(i).getName()).addToValue(transaction.getValoresCuentas().get(i).doubleValue());
+				}
+				else {
+					map.put(transaction.getCuentas().get(i).getName(), 
+							new AccountSummary(
+									transaction.getCuentas().get(i).getName(),
+									transaction.getCuentas().get(i).getGroup(),
+									transaction.getValoresCuentas().get(i).doubleValue()));
+				}
+				
+			}
+		}
+		
+		return map;
+	}
 
 }
