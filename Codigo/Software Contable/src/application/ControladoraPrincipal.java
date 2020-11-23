@@ -10,6 +10,8 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Map;
+
 import exceptions.InformationExistsException;
 import exceptions.InsufficientAccountsExcetion;
 import exceptions.InsufficientInformationException;
@@ -32,6 +34,7 @@ import javafx.scene.control.TextField;
 import model.Account;
 import model.Company;
 import model.Controller;
+import model.TestBalanceTableModel;
 import model.ThirdParty;
 import model.Transaction;
 import model.TransactionTableModel;
@@ -46,6 +49,8 @@ public class ControladoraPrincipal {
 	private Controller controladora;
 	
 	private ObservableList<TransactionTableModel> transactionTableModels;
+	
+	private ObservableList<TestBalanceTableModel> testBalanceTableModels;
 
 	// ----------------------------------------------------------------------------------
 
@@ -211,16 +216,16 @@ public class ControladoraPrincipal {
 	private Tab balance;
 	
     @FXML
-    private TableView<TransactionTableModel> balanceTabla;
+    private TableView<TestBalanceTableModel> balanceTabla;
 
     @FXML
-    private TableColumn<TransactionTableModel, String> columnaCuenta;
+    private TableColumn<TestBalanceTableModel, String> columnaCuenta;
 
     @FXML
-    private TableColumn<TransactionTableModel, Double> columnaEntrada;
+    private TableColumn<TestBalanceTableModel, Double> columnaEntrada;
 
     @FXML
-    private TableColumn<TransactionTableModel, Double> columnaSalida;
+    private TableColumn<TestBalanceTableModel, Double> columnaSalida;
 
     @FXML
     private Label entradaTotal;
@@ -546,7 +551,16 @@ public class ControladoraPrincipal {
 				tablaDeRegistros.setItems(transactionTableModels);
 				tablaDeRegistros.refresh();
 				
-				ReportsModule.testBalance(controladora.getCompany().getRegistros());
+				//ACTUALIZAR BALANCE DE PRUEBA
+				
+				Map<String, double[]> map=ReportsModule.testBalance(controladora.getCompany().getRegistros());
+				double[] totals=map.get("Total");
+				map.remove("Total");
+				entradaTotal.setText(totals[0]+"");
+				salidaTotal.setText(totals[1]+"");
+				ArrayList<TestBalanceTableModel> list=TestBalanceTableModel.fromMap(map);
+				balanceTabla.setItems(FXCollections.observableArrayList(list));
+				balanceTabla.refresh();
 				
 			}
 			
@@ -730,6 +744,14 @@ public class ControladoraPrincipal {
 		tablaDeRegistros.setItems(transactionTableModels);
 		
 
+		// ******************************************************************************
+		
+		testBalanceTableModels= FXCollections.observableArrayList();
+		columnaCuenta.setCellValueFactory(new PropertyValueFactory<>("ColumnaCuenta"));
+		columnaEntrada.setCellValueFactory(new PropertyValueFactory<>("ColumnaEntrada"));
+		columnaSalida.setCellValueFactory(new PropertyValueFactory<>("ColumnaSalida"));
+		balanceTabla.setItems(testBalanceTableModels);
+		
 		// ******************************************************************************
 
 		cuenta.setDisable(true);
