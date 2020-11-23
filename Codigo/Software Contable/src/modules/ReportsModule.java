@@ -90,7 +90,7 @@ public class ReportsModule {
 	
 	//ESTADO DE RESULTADOS
 	
-	public static ArrayList<ArrayList<AccountSummary>> stateOfIncome(ArrayList<Transaction> transactions) {
+	public static ArrayList<ArrayList<AccountSummary>> generalBalance(ArrayList<Transaction> transactions) {
 		
 		Map<String,AccountSummary> summary= accountSummary(transactions);
 		
