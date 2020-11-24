@@ -264,7 +264,7 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="balance" text="S1 - Balance">
+      <Tab fx:id="balancePrueba" text="S1 - Balance de prueba">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -273,7 +273,7 @@
                         <Image url="@image-2.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="309.0" layoutY="14.0" text="Balance de resultados" textFill="#c9c7c7">
+                  <Label layoutX="320.0" layoutY="14.0" text="Balance de prueba" textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -285,37 +285,42 @@
                         <TableColumn fx:id="columnaSalida" prefWidth="120.0" text="Salida" />
                     </columns>
                   </TableView>
-                  <Label layoutX="570.0" layoutY="194.0" text="Total" textFill="#c9c7c7">
+                  <Label layoutX="584.0" layoutY="235.0" text="Total" textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="519.0" layoutY="246.0" text="Entrada:" textFill="#c9c7c7">
+                  <Label layoutX="533.0" layoutY="287.0" text="Entrada:" textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="525.0" layoutY="311.0" text="Salida:" textFill="#c9c7c7">
+                  <Label layoutX="539.0" layoutY="352.0" text="Salida:" textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="entradaTotal" layoutX="610.0" layoutY="246.0" text="..." textFill="#c9c7c7">
+                  <Label fx:id="entradaTotal" layoutX="624.0" layoutY="287.0" text="..." textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="salidaTotal" layoutX="610.0" layoutY="311.0" text="..." textFill="#c9c7c7">
+                  <Label fx:id="salidaTotal" layoutX="624.0" layoutY="352.0" text="..." textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Line endX="75.0" endY="-148.0" layoutX="514.0" layoutY="377.0" startX="75.0" startY="-27.0" stroke="#ddff00" />
+                  <Line endX="75.0" endY="-148.0" layoutX="528.0" layoutY="418.0" startX="75.0" startY="-27.0" stroke="#ddff00" />
+                  <ImageView fitHeight="62.0" fitWidth="60.0" layoutX="571.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagen-3.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="s2" text="S2">
+      <Tab fx:id="balanceGeneral" text="S2 - Balance general">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -324,11 +329,28 @@
                         <Image url="@image-2.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="309.0" layoutY="14.0" text="Balance de resultados" textFill="#c9c7c7">
+                  <Label layoutX="329.0" layoutY="14.0" text="Balance general" textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
+                  <TableView fx:id="tablaIzquierda" layoutX="57.0" layoutY="69.0" prefHeight="414.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="c1Izquierda" prefWidth="102.0" text="." />
+                      <TableColumn fx:id="c2Izquierda" prefWidth="97.0" text="." />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="tablaDerecha" layoutX="517.0" layoutY="69.0" prefHeight="414.0" prefWidth="200.0">
+                     <columns>
+                        <TableColumn fx:id="c1Derecha" prefWidth="102.0" text="." />
+                        <TableColumn fx:id="c2Derecha" prefWidth="97.0" text="." />
+                     </columns>
+                  </TableView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="312.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagen-2.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </content>

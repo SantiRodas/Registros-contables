@@ -47,9 +47,9 @@ public class ControladoraPrincipal {
 	// RELACIONES CON LA CLASE CONTROLADORA DEL MODELO
 
 	private Controller controladora;
-	
+
 	private ObservableList<TransactionTableModel> transactionTableModels;
-	
+
 	private ObservableList<TestBalanceTableModel> testBalanceTableModels;
 
 	// ----------------------------------------------------------------------------------
@@ -177,73 +177,95 @@ public class ControladoraPrincipal {
 
 	@FXML
 	private Tab registros;
-	
+
 	@FXML
-    private TableView<TransactionTableModel> tablaDeRegistros;
+	private TableView<TransactionTableModel> tablaDeRegistros;
 
-    @FXML
-    private TableColumn<TransactionTableModel, String> nrt;
+	@FXML
+	private TableColumn<TransactionTableModel, String> nrt;
 
-    @FXML
-    private TableColumn<TransactionTableModel, String> nt;
+	@FXML
+	private TableColumn<TransactionTableModel, String> nt;
 
-    @FXML
-    private TableColumn<TransactionTableModel, String> c1t;
+	@FXML
+	private TableColumn<TransactionTableModel, String> c1t;
 
-    @FXML
-    private TableColumn<TransactionTableModel, Double> v1t;
+	@FXML
+	private TableColumn<TransactionTableModel, Double> v1t;
 
-    @FXML
-    private TableColumn<TransactionTableModel, String> c2t;
+	@FXML
+	private TableColumn<TransactionTableModel, String> c2t;
 
-    @FXML
-    private TableColumn<TransactionTableModel, Double> v2t;
+	@FXML
+	private TableColumn<TransactionTableModel, Double> v2t;
 
-    @FXML
-    private TableColumn<TransactionTableModel, String> c3t;
+	@FXML
+	private TableColumn<TransactionTableModel, String> c3t;
 
-    @FXML
-    private TableColumn<TransactionTableModel, Double> v3t;
+	@FXML
+	private TableColumn<TransactionTableModel, Double> v3t;
 
-    @FXML
-    private TableColumn<TransactionTableModel, String> tpp;
-	
+	@FXML
+	private TableColumn<TransactionTableModel, String> tpp;
+
 	// ----------------------------------------------------------------------------------
-	
+
 	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA SEXTA PANTALLA
 
 	@FXML
-	private Tab balance;
-	
-    @FXML
-    private TableView<TestBalanceTableModel> balanceTabla;
+	private Tab balancePrueba;
 
-    @FXML
-    private TableColumn<TestBalanceTableModel, String> columnaCuenta;
+	@FXML
+	private TableView<TestBalanceTableModel> balanceTabla;
 
-    @FXML
-    private TableColumn<TestBalanceTableModel, Double> columnaEntrada;
+	@FXML
+	private TableColumn<TestBalanceTableModel, String> columnaCuenta;
 
-    @FXML
-    private TableColumn<TestBalanceTableModel, Double> columnaSalida;
+	@FXML
+	private TableColumn<TestBalanceTableModel, Double> columnaEntrada;
 
-    @FXML
-    private Label entradaTotal;
+	@FXML
+	private TableColumn<TestBalanceTableModel, Double> columnaSalida;
 
-    @FXML
-    private Label salidaTotal;
-	
+	@FXML
+	private Label entradaTotal;
+
+	@FXML
+	private Label salidaTotal;
+
 	// ----------------------------------------------------------------------------------
-	
+
 	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA SEPTIMA PANTALLA
+
+	@FXML
+	private Tab balanceGeneral;
+	
+	// TABLA DE LA IZQUIERDA EN LA PANTALLA ASIGNADA
 	
 	@FXML
-	private Tab s2;
+	private TableView<TestBalanceTableModel> tablaIzquierda;
 	
+	@FXML
+	private TableColumn<TestBalanceTableModel, String> c1Izquierda;
+	
+	@FXML
+	private TableColumn<TestBalanceTableModel, Double> c2Izquierda;
+	
+	// TABLA DE LA DERECHA EN LA PANTALLA ASIGNADA
+	
+	@FXML
+	private TableView<TestBalanceTableModel> tablaDerecha;
+	
+	@FXML
+	private TableColumn<TestBalanceTableModel, String> c1Derecha;
+	
+	@FXML
+	private TableColumn<TestBalanceTableModel, Double> c2Derecha;
+
 	// ----------------------------------------------------------------------------------
-	
+
 	// POSIBLES ACCIONES QUE SE UTILIZAN EN LA OCTAVA PANTALLA
-	
+
 	@FXML
 	private Tab s3;
 
@@ -421,236 +443,248 @@ public class ControladoraPrincipal {
 
 	@FXML
 	void agregarRegistro(ActionEvent event) throws InformationExistsException, InsufficientAccountsExcetion {
-		
+
 		try {
-			
+
 			// ARRAYLIST QUE SE UTILIZAN PARA CREAR UN REGISTRO
-			
+
 			ArrayList<Account> cuentas = new ArrayList<Account>();
-			
+
 			ArrayList<Double> valores = new ArrayList<Double>();
-			
+
 			// VARIABLES DE JAVAFX PREDETERMINADAS
-			
+
 			String numeroRegistro = agregarCodigoRegistro.getText();
-			
+
 			String nombreRegistro = agregarNombreRegistro.getText();
-			
+
 			// VERIFICAMOS LA VALIDACION DE LA CUENTA 1
-			
+
 			if(validacionCuenta1.isSelected()) {
-				
+
 				cuentas.add(cuenta1.getValue());
-				
+
 				String v1 = agregarMonedaRegistro1.getText();
-				
+
 				Double valor1 = Double.parseDouble(v1);
-				
+
 				valores.add(valor1);
-				
+
 			}
-			
+
 			// VERIFICAMOS LA VALIDACION DE LA CUENTA 2
-			
+
 			if(validacionCuenta2.isSelected()) {
-				
+
 				cuentas.add(cuenta2.getValue());
-				
+
 				String v2 = agregarMonedaRegistro2.getText();
-				
+
 				Double valor2 = Double.parseDouble(v2);
-				
+
 				valores.add(valor2);
-				
+
 			}
-			
+
 			// VERIFICAMOS LA VALIDACION DE LA CUENTA 3
-			
+
 			if(validacionCuenta3.isSelected()) {
-				
+
 				cuentas.add(cuenta3.getValue());
-				
+
 				String v3 = agregarMonedaRegistro3.getText();
-				
+
 				Double valor3 = Double.parseDouble(v3);
-				
+
 				valores.add(valor3);
-				
+
 			}
-			
+
 			// CREAMOS LA TERCERA PERSONA INVLUCRADA
-			
+
 			ThirdParty terceraPersona = personaInvolucrada.getValue();
-			
+
 			// SE HACE LAS ULTIMAS VERIFICACIONES PARA AGREGAR UN REGISTRO
-			
+
 			if(numeroRegistro.isEmpty() || nombreRegistro.isEmpty()) {
-				
+
 				throw new InsufficientInformationException();
-				
+
 			} else if(cuentas.size() < 2 || valores.size() < 2) {
-				
+
 				throw new InsufficientAccountsExcetion();
-				
+
 			} else {
-				
+
 				// CREAMOS EL REGISTRO Y LO AGREGAMOS EN EL SISTEMA
-				
+
 				Transaction registro = new Transaction(numeroRegistro, nombreRegistro, cuentas, valores, terceraPersona);
-				
+
 				controladora.getCompany().agregarRegistro(registro);
-				
+
 				// LIMPIAMOS EL NOMBRE Y EL REGISTRO DEL SISTEMA
-				
+
 				agregarNombreRegistro.setText("");
-				
+
 				agregarCodigoRegistro.setText("");
-				
+
 				// VERIFICAMOS TODO LO RELACIONADO CON LA CUENTA 1
-				
+
 				validacionCuenta1.setSelected(false);
-				
+
 				cuenta1.setDisable(true);
-				
+
 				agregarMonedaRegistro1.setDisable(true);
-				
+
 				agregarMonedaRegistro1.setText("");
-				
+
 				// VERIFICAMOS TODO LO RELACIONADO CON LA CUENTA 2
-				
+
 				validacionCuenta2.setSelected(false);
-				
+
 				cuenta2.setDisable(true);
-				
+
 				agregarMonedaRegistro2.setDisable(true);
-				
+
 				agregarMonedaRegistro2.setText("");
-				
+
 				// VERIFICAMOS TODO LA RELACIONADO CON LA CUENTA 3
-				
+
 				validacionCuenta3.setSelected(false);
-				
+
 				cuenta3.setDisable(true);
-				
+
 				agregarMonedaRegistro3.setDisable(true);
-				
+
 				agregarMonedaRegistro3.setText("");
-				
+
 				// MENSAJE DE CONFIRMACION Y VISIBILIDAD DE LA SIGUIENTE VENTANA
-				
+
 				registros.setDisable(false);
+
+				balancePrueba.setDisable(false);
 				
-				balance.setDisable(false);
-				
+				balanceGeneral.setDisable(false);
+
 				confirmacion();
-				
+
 				//AGREGAR DATOS A TABLA
+
+				TransactionTableModel model = TransactionTableModel.fromTransaction(registro);
 				
-				TransactionTableModel model=TransactionTableModel.fromTransaction(registro);
 				transactionTableModels.add(model);
+				
 				tablaDeRegistros.setItems(transactionTableModels);
+				
 				tablaDeRegistros.refresh();
-				
+
 				//ACTUALIZAR BALANCE DE PRUEBA
+
+				Map<String, double[]> map = ReportsModule.testBalance(controladora.getCompany().getRegistros());
 				
-				Map<String, double[]> map=ReportsModule.testBalance(controladora.getCompany().getRegistros());
-				double[] totals=map.get("Total");
+				double[] totals = map.get("Total");
+				
 				map.remove("Total");
-				entradaTotal.setText(totals[0]+"");
-				salidaTotal.setText(totals[1]+"");
-				ArrayList<TestBalanceTableModel> list=TestBalanceTableModel.fromMap(map);
-				balanceTabla.setItems(FXCollections.observableArrayList(list));
-				balanceTabla.refresh();
 				
+				entradaTotal.setText(totals[0] + "");
+				
+				salidaTotal.setText(totals[1] + "");
+				
+				ArrayList<TestBalanceTableModel> list = TestBalanceTableModel.fromMap(map);
+				
+				balanceTabla.setItems(FXCollections.observableArrayList(list));
+				
+				balanceTabla.refresh();
+
 			}
-			
+
 			// DIFERENTES CATCH QUE SE LE HACEN A DIFERENTES EXCEPCIONES
-			
+
 		} catch(InsufficientInformationException e1) {
-			
+
 			errorDatosVacios();
-			
+
 		} catch(InsufficientAccountsExcetion e2) {
-			
+
 			errorCuentasInsuficientes();
-			
+
 		} catch(NumberFormatException e3) {
-			
+
 			errorDatosVacios();
-			
+
 		} catch(InformationExistsException e4) {
-			
+
 			errorDatosExistentes();
-			
+
 		}
 
 	}
 
 	// ----------------------------------------------------------------------------------
-	
+
 	// VALIDACION PARA LA CUENTA 1
 
 	@FXML
 	void vc1(ActionEvent event) {
-		
+
 		if(validacionCuenta1.isSelected()) {
-			
+
 			cuenta1.setDisable(false);
-			
+
 			agregarMonedaRegistro1.setDisable(false);
-			
+
 		} else {
-			
+
 			cuenta1.setDisable(true);
-			
+
 			agregarMonedaRegistro1.setDisable(true);
-			
+
 		}
 
 	}
 
 	// ----------------------------------------------------------------------------------
-	
+
 	// VALIDACION PARA LA CUENTA 2
 
 	@FXML
 	void vc2(ActionEvent event) {
-		
+
 		if(validacionCuenta2.isSelected()) {
-			
+
 			cuenta2.setDisable(false);
-			
+
 			agregarMonedaRegistro2.setDisable(false);
-			
+
 		} else {
-			
+
 			cuenta2.setDisable(true);
-			
+
 			agregarMonedaRegistro2.setDisable(true);
-			
+
 		}
 
 	}
 
 	// ----------------------------------------------------------------------------------
-	
+
 	// VALIDACION PARA LA CUENTA 3
 
 	@FXML
 	void vc3(ActionEvent event) {
-		
+
 		if(validacionCuenta3.isSelected()) {
-			
+
 			cuenta3.setDisable(false);
-			
+
 			agregarMonedaRegistro3.setDisable(false);
-			
+
 		} else {
-			
+
 			cuenta3.setDisable(true);
-			
+
 			agregarMonedaRegistro3.setDisable(true);
-			
+
 		}
 
 	}
@@ -699,11 +733,11 @@ public class ControladoraPrincipal {
 		alert.showAndWait();
 
 	}
-	
+
 	// ----------------------------------------------------------------------------------
-	
+
 	// MENSAJE DE ERROR CUANDO NO HAY CUENTAS SUFICIENTES
-	
+
 	public void errorCuentasInsuficientes() {
 
 		Alert alert = new Alert(AlertType.ERROR);
@@ -714,7 +748,7 @@ public class ControladoraPrincipal {
 		alert.showAndWait();
 
 	}
-	
+
 	// ----------------------------------------------------------------------------------
 
 	// METODO INITIALIZE
@@ -725,13 +759,13 @@ public class ControladoraPrincipal {
 		// ******************************************************************************
 
 		controladora = new Controller(null);
-		
+
 		// ******************************************************************************
-		
+
 		transactionTableModels= FXCollections.observableArrayList(
 				//new TransactionTableModel("a", "a", "a", 1.0, "a", 1.0, "a", 1.0, "a")
-		);
-		
+				);
+
 		nrt.setCellValueFactory(new PropertyValueFactory<>("Nrt"));
 		nt.setCellValueFactory(new PropertyValueFactory<>("Nt"));
 		c1t.setCellValueFactory(new PropertyValueFactory<>("C1t"));
@@ -742,24 +776,24 @@ public class ControladoraPrincipal {
 		v3t.setCellValueFactory(new PropertyValueFactory<>("V3t"));
 		tpp.setCellValueFactory(new PropertyValueFactory<>("Tpp"));
 		tablaDeRegistros.setItems(transactionTableModels);
-		
+
 
 		// ******************************************************************************
-		
+
 		testBalanceTableModels= FXCollections.observableArrayList();
 		columnaCuenta.setCellValueFactory(new PropertyValueFactory<>("ColumnaCuenta"));
 		columnaEntrada.setCellValueFactory(new PropertyValueFactory<>("ColumnaEntrada"));
 		columnaSalida.setCellValueFactory(new PropertyValueFactory<>("ColumnaSalida"));
 		balanceTabla.setItems(testBalanceTableModels);
-		
+
 		// ******************************************************************************
 
 		cuenta.setDisable(true);
 		terceraPersona.setDisable(true);
 		agregarRegistro.setDisable(true);
 		registros.setDisable(true);
-		balance.setDisable(true);
-		s2.setDisable(true);
+		balancePrueba.setDisable(true);
+		balanceGeneral.setDisable(true);
 		s3.setDisable(true);
 
 		// ******************************************************************************
