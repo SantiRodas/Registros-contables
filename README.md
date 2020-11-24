@@ -4,9 +4,9 @@ Desde la administracion de cuentas y registros, hasta los balances y estados, ca
 Ademas, su visualizacion minimalista hace de su uso algo sencillo.
 
 ## Requisitos del programa
-* Software Java Instalado
+* Software Java 8 instalado.
 * JavaFx funcional.
-* Eclipse u otro programa que permita visulizar el software.
+* Eclipse u otro programa que permita visualizar el software.
 
 ## Etapas de construccion
 
