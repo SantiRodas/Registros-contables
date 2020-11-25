@@ -208,4 +208,66 @@ public class ReportsModule {
 	
 	// ----------------------------------------------------------------------------------
 
+	public static ArrayList<ArrayList<AccountSummary>> generalResultados (ArrayList<Transaction> transactions){
+		
+		Map<String,AccountSummary> summary= accountSummary(transactions);
+		
+		ArrayList<AccountSummary> income=new ArrayList<AccountSummary>();
+		
+		ArrayList<AccountSummary> expenses=new ArrayList<AccountSummary>();
+		
+
+		summary.forEach((k,v)->{
+			
+			switch (v.getGroup()) {
+			
+			case "Ingresos":
+				
+				income.add(v);
+				break;
+				
+			case "Gastos":
+				
+				expenses.add(v);
+				break;
+
+			default:
+				break;
+				
+			}
+			
+		});
+		
+		double totalIncome = 0;
+		
+		double totalExpenses = 0;
+		
+		for (AccountSummary entry : income) {
+			
+			totalIncome+=entry.getTotalValue();
+			
+		}
+		
+		for (AccountSummary expense : expenses) {
+			
+			totalExpenses+=expense.getTotalValue();
+			
+		}
+		
+		income.add(new AccountSummary("Total Ingresos", "", totalIncome));
+		
+		expenses.add(new AccountSummary("Total Gastos", "", totalExpenses));
+
+		
+		ArrayList<ArrayList<AccountSummary>> result=new ArrayList<ArrayList<AccountSummary>>();
+		
+		result.add(income);
+		
+		result.add(expenses);
+
+		
+		return result;
+		
+	}
+	
 }

@@ -57,6 +57,8 @@ public class ControladoraPrincipal {
 	private ObservableList<AccountSummaryTableModel> assetsGeneralBalanceTableModels;
 	
 	private ObservableList<AccountSummaryTableModel> liaAndNetGeneralBalanceTableModels;
+	
+	private ObservableList<AccountSummaryTableModel> helper;
 
 	// ----------------------------------------------------------------------------------
 
@@ -275,7 +277,88 @@ public class ControladoraPrincipal {
 	@FXML
 	private Tab s3;
 
+	// METODOS PARA AGREGAR IMPUESTO Y RESERVAS A EL ESTADO DE RESULTADOS
+	
+	@FXML
+	public void impuesto(ActionEvent event) {
+
+		tfImpuesto.setDisable(false);
+			
+	    }
+
+    @FXML
+	public void reserva(ActionEvent event) {
+
+	    tfReserva.setDisable(false);
+	    	
+    }
+	    
+	// METODOS PARA CALCULAR UTILIDAD TOTAL
+	    
+	    @FXML
+	    void btCalcularUtilidadTotal(ActionEvent event) {
+	    	
+	    	int impuestoP = 0;
+	    	int reservaP = 0;
+	    	
+	    	if(cbImpuesto.isSelected()) {
+	    		
+	    		impuestoP = Integer.parseInt(tfImpuesto.getText());
+
+	    		
+	    	}if(cbReserva.isSelected()) {
+	    		
+	    		reservaP = Integer.parseInt(tfReserva.getText());
+
+	    	}
+	    	
+	    	double utilidad = Double.parseDouble(ingresoTotal.getText())-Double.parseDouble(gastosTotales.getText());
+	    	
+	    	double impuesto = (utilidad)*(impuestoP * 0.01); 
+
+	    	double reserva = (utilidad)*(reservaP * 0.01);
+	    	
+	    	double utilidadTotalHelper = utilidad-impuesto-reserva;
+	    	
+	    	utilidadesTotales.setText(utilidadTotalHelper+"");
+	    	
+	    	
+	    	
+	    }
+	
 	// ----------------------------------------------------------------------------------
+	
+	@FXML
+    private TableView<AccountSummaryTableModel> tablaCuantasRsesultados;
+
+    @FXML
+    private TableColumn<AccountSummaryTableModel, String> columnaCuentaResultados;
+
+    @FXML
+    private TableColumn<AccountSummaryTableModel, String> columnaValor;
+
+    @FXML
+    private Label ingresoTotal;
+
+    @FXML
+    private Label gastosTotales;
+
+    @FXML
+    private CheckBox cbReserva;
+
+    @FXML
+    private CheckBox cbImpuesto;
+
+    @FXML
+    private TextField tfReserva;
+
+    @FXML
+    private TextField tfImpuesto;
+
+    @FXML
+    private Label utilidadesTotales;
+
+    // ----------------------------------------------------------------------------------
 
 	// METODO ON ACTION EVENT PARA AGREGAR UNA EMPRESA
 
@@ -549,7 +632,7 @@ public class ControladoraPrincipal {
 				validacionCuenta2.setSelected(false);
 
 				cuenta2.setDisable(true);
-
+				
 				agregarMonedaRegistro2.setDisable(true);
 
 				agregarMonedaRegistro2.setText("");
@@ -617,6 +700,18 @@ public class ControladoraPrincipal {
 				tablaDerecha.refresh();
 				
 				tablaIzquierda.refresh();
+				
+				//ACTUAIZAR ESTADO DE RESULTADOS
+				
+				s3.setDisable(false);
+				
+				ArrayList<ArrayList<AccountSummary>> helperGruops=ReportsModule.generalResultados(controladora.getCompany().getRegistros());
+				
+				ArrayList<AccountSummaryTableModel> icoAndExp = AccountSummaryTableModel.generateIcoAndExp(helperGruops.get(0), helperGruops.get(1), ingresoTotal, gastosTotales);
+				
+				tablaCuantasRsesultados.setItems(FXCollections.observableArrayList(icoAndExp));
+				
+				tablaCuantasRsesultados.refresh();
 				
 			}
 
@@ -820,6 +915,14 @@ public class ControladoraPrincipal {
 		tablaDerecha.setItems(liaAndNetGeneralBalanceTableModels);
 		
 		// ******************************************************************************
+		
+		helper = FXCollections.observableArrayList();
+		columnaCuentaResultados.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+		columnaValor.setCellValueFactory(new PropertyValueFactory<>("Valor"));
+		
+		tablaCuantasRsesultados.setItems(helper);
+		
+		// ******************************************************************************
 
 		cuenta.setDisable(true);
 		terceraPersona.setDisable(true);
@@ -844,9 +947,15 @@ public class ControladoraPrincipal {
 		grupoCuenta.getItems().add("Patrimonio");
 
 		// ******************************************************************************
+		
+		tfReserva.setDisable(true);
+		tfImpuesto.setDisable(true);
 
+		
 	}
 
 	// ----------------------------------------------------------------------------------
 
+	
+	
 }

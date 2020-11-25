@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Label;
 
 public class AccountSummaryTableModel {
 	
@@ -91,11 +92,54 @@ public class AccountSummaryTableModel {
 		
 		resultTable.add(new AccountSummaryTableModel("", ""));
 		resultTable.add(new AccountSummaryTableModel("Total Pasivos y Patrimonio", 
-				liabilities.get(liabilities.size()-1).getTotalValue()+networth.get(networth.size()-1).getTotalValue()+""
-		));
+				liabilities.get(liabilities.size()-1).getTotalValue()+networth.get(networth.size()-1).getTotalValue()+""));
 		
 		return resultTable;
 		
+	}
+	
+	public static ArrayList<AccountSummaryTableModel> generateIcoAndExp(ArrayList<AccountSummary> icome ,ArrayList<AccountSummary> expenses, Label ingresoTotal, Label gastosTotales){
+		
+		ArrayList<AccountSummaryTableModel> resultTable=new ArrayList<AccountSummaryTableModel>();
+		
+		resultTable.add(new AccountSummaryTableModel("Ingresos:", ""));
+		resultTable.add(new AccountSummaryTableModel("", ""));
+		
+		for (int i = 0; i < icome.size(); i++) {
+			
+			if(i==icome.size()-1) {
+				resultTable.add(new AccountSummaryTableModel("", ""));
+				resultTable.add(new AccountSummaryTableModel(icome.get(i).getName(), icome.get(i).getTotalValue()+""));
+			}
+			else {
+				resultTable.add(new AccountSummaryTableModel(icome.get(i).getName(), icome.get(i).getTotalValue()+""));
+			}
+			
+		}
+		
+		resultTable.add(new AccountSummaryTableModel("", ""));
+		resultTable.add(new AccountSummaryTableModel("Gastos:", ""));
+		resultTable.add(new AccountSummaryTableModel("", ""));
+		
+		for (int i = 0; i < expenses.size(); i++) {
+			
+			if(i==expenses.size()-1) {
+				resultTable.add(new AccountSummaryTableModel("", ""));
+				resultTable.add(new AccountSummaryTableModel(expenses.get(i).getName(), expenses.get(i).getTotalValue()+""));
+			}
+			else {
+				resultTable.add(new AccountSummaryTableModel(expenses.get(i).getName(), expenses.get(i).getTotalValue()+""));
+			}
+			
+		}
+		
+		resultTable.add(new AccountSummaryTableModel("", ""));
+		resultTable.add(new AccountSummaryTableModel("UwU", "UwU"));
+		
+		ingresoTotal.setText(icome.get(icome.size()-1).getTotalValue()+"");
+		gastosTotales.setText(expenses.get(expenses.size()-1).getTotalValue()+"");
+		
+		return resultTable;
 	}
 	
 	
