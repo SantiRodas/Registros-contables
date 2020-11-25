@@ -134,7 +134,6 @@ public class AccountSummaryTableModel {
 		}
 		
 		resultTable.add(new AccountSummaryTableModel("", ""));
-		resultTable.add(new AccountSummaryTableModel("UwU", "UwU"));
 		
 		ingresoTotal.setText(icome.get(icome.size()-1).getTotalValue()+"");
 		gastosTotales.setText(expenses.get(expenses.size()-1).getTotalValue()+"");

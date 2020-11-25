@@ -312,7 +312,7 @@ public class ControladoraPrincipal {
 
 	    	}
 	    	
-	    	double utilidad = Double.parseDouble(ingresoTotal.getText())-Double.parseDouble(gastosTotales.getText());
+	    	double utilidad = Double.parseDouble(ingresoTotal.getText())+Double.parseDouble(gastosTotales.getText());
 	    	
 	    	double impuesto = (utilidad)*(impuestoP * 0.01); 
 
