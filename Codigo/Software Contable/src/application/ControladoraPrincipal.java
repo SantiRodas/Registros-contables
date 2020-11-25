@@ -322,6 +322,8 @@ public class ControladoraPrincipal {
 	    	
 	    	utilidadesTotales.setText(utilidadTotalHelper+"");
 	    	
+	    	tfImpuesto.setDisable(true);
+	    	tfReserva.setDisable(true);
 	    	
 	    	
 	    }
