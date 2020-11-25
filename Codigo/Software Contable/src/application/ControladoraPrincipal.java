@@ -301,15 +301,22 @@ public class ControladoraPrincipal {
 	    	int impuestoP = 0;
 	    	int reservaP = 0;
 	    	
+	    	try {
 	    	if(cbImpuesto.isSelected()) {
 	    		
 	    		impuestoP = Integer.parseInt(tfImpuesto.getText());
 
 	    		
 	    	}if(cbReserva.isSelected()) {
-	    		
+
 	    		reservaP = Integer.parseInt(tfReserva.getText());
 
+
+	    	}
+	    	}catch(NumberFormatException e) {
+	    		
+	    		errorDatosVacios();
+	    		
 	    	}
 	    	
 	    	double utilidad = Double.parseDouble(ingresoTotal.getText())+Double.parseDouble(gastosTotales.getText());
