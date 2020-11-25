@@ -114,7 +114,7 @@ public class ReportsModule {
 				liabilities.add(v);
 				break;
 				
-			case "Patrimonios":
+			case "Patrimonio":
 				networth.add(v);
 				break;
 				

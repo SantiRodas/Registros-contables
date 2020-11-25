@@ -32,6 +32,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Account;
+import model.AccountSummary;
+import model.AccountSummaryTableModel;
 import model.Company;
 import model.Controller;
 import model.TestBalanceTableModel;
@@ -51,6 +53,10 @@ public class ControladoraPrincipal {
 	private ObservableList<TransactionTableModel> transactionTableModels;
 
 	private ObservableList<TestBalanceTableModel> testBalanceTableModels;
+	
+	private ObservableList<AccountSummaryTableModel> assetsGeneralBalanceTableModels;
+	
+	private ObservableList<AccountSummaryTableModel> liaAndNetGeneralBalanceTableModels;
 
 	// ----------------------------------------------------------------------------------
 
@@ -243,24 +249,24 @@ public class ControladoraPrincipal {
 	// TABLA DE LA IZQUIERDA EN LA PANTALLA ASIGNADA
 	
 	@FXML
-	private TableView<TestBalanceTableModel> tablaIzquierda;
+	private TableView<AccountSummaryTableModel> tablaIzquierda;
 	
 	@FXML
-	private TableColumn<TestBalanceTableModel, String> c1Izquierda;
+	private TableColumn<AccountSummaryTableModel, String> c1Izquierda;
 	
 	@FXML
-	private TableColumn<TestBalanceTableModel, Double> c2Izquierda;
+	private TableColumn<AccountSummaryTableModel, Double> c2Izquierda;
 	
 	// TABLA DE LA DERECHA EN LA PANTALLA ASIGNADA
 	
 	@FXML
-	private TableView<TestBalanceTableModel> tablaDerecha;
+	private TableView<AccountSummaryTableModel> tablaDerecha;
 	
 	@FXML
-	private TableColumn<TestBalanceTableModel, String> c1Derecha;
+	private TableColumn<AccountSummaryTableModel, String> c1Derecha;
 	
 	@FXML
-	private TableColumn<TestBalanceTableModel, Double> c2Derecha;
+	private TableColumn<AccountSummaryTableModel, Double> c2Derecha;
 
 	// ----------------------------------------------------------------------------------
 
@@ -595,7 +601,23 @@ public class ControladoraPrincipal {
 				balanceTabla.setItems(FXCollections.observableArrayList(list));
 				
 				balanceTabla.refresh();
-
+				
+				//ACTUALIZAR BALANCE GENERAL
+				
+				ArrayList<ArrayList<AccountSummary>> groups=ReportsModule.generalBalance(controladora.getCompany().getRegistros());
+				
+				ArrayList<AccountSummaryTableModel> assets=AccountSummaryTableModel.generateAssetsList(groups.get(0));
+				
+				ArrayList<AccountSummaryTableModel> liaAndNet=AccountSummaryTableModel.generateLiabilitiesAndNetworthList(groups.get(1), groups.get(2));
+				
+				tablaIzquierda.setItems(FXCollections.observableArrayList(assets));
+				
+				tablaDerecha.setItems(FXCollections.observableArrayList(liaAndNet));
+				
+				tablaDerecha.refresh();
+				
+				tablaIzquierda.refresh();
+				
 			}
 
 			// DIFERENTES CATCH QUE SE LE HACEN A DIFERENTES EXCEPCIONES
@@ -786,6 +808,17 @@ public class ControladoraPrincipal {
 		columnaSalida.setCellValueFactory(new PropertyValueFactory<>("ColumnaSalida"));
 		balanceTabla.setItems(testBalanceTableModels);
 
+		// ******************************************************************************
+		
+		assetsGeneralBalanceTableModels=FXCollections.observableArrayList();
+		liaAndNetGeneralBalanceTableModels=FXCollections.observableArrayList();
+		c1Izquierda.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+		c2Izquierda.setCellValueFactory(new PropertyValueFactory<>("Valor"));
+		c1Derecha.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+		c2Derecha.setCellValueFactory(new PropertyValueFactory<>("Valor"));
+		tablaIzquierda.setItems(assetsGeneralBalanceTableModels);
+		tablaDerecha.setItems(liaAndNetGeneralBalanceTableModels);
+		
 		// ******************************************************************************
 
 		cuenta.setDisable(true);
