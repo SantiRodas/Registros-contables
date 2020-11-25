@@ -355,7 +355,7 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="s3" text="S3">
+      <Tab fx:id="s3" text="S3 - Estado de resultados">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -364,11 +364,52 @@
                         <Image url="@image-2.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="309.0" layoutY="14.0" text="Balance de resultados" textFill="#c9c7c7">
+                  <Label layoutX="310.0" layoutY="14.0" text="Estado de resultados" textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
+                  <TableView fx:id="tablaCuantasRsesultados" layoutX="91.0" layoutY="52.0" prefHeight="491.0" prefWidth="234.0">
+                     <columns>
+                        <TableColumn fx:id="columnaCuentaResultados" prefWidth="115.0" text="Cuenta" />
+                        <TableColumn fx:id="columnaValor" prefWidth="120.0" text="Valor" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="465.0" layoutY="175.0" text="Ingreso total:" textFill="#c9c7c7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="455.0" layoutY="207.0" text="Gastos totales:" textFill="#c9c7c7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ingresoTotal" layoutX="569.0" layoutY="175.0" text="..." textFill="#c9c7c7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="gastosTotales" layoutX="569.0" layoutY="207.0" text="..." textFill="#c9c7c7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="cbReserva" layoutX="451.0" layoutY="254.0" mnemonicParsing="false" onAction="#reserva" text="Reserva" />
+                  <CheckBox fx:id="cbImpuesto" layoutX="552.0" layoutY="254.0" mnemonicParsing="false" onAction="#impuesto" text="Impuesto" />
+                  <TextField fx:id="tfReserva" layoutX="450.0" layoutY="309.0" prefHeight="26.0" prefWidth="66.0" text="En %" />
+                  <TextField fx:id="tfImpuesto" layoutX="557.0" layoutY="309.0" prefHeight="26.0" prefWidth="62.0" text="En %" />
+                  <Label layoutX="431.0" layoutY="403.0" text="Utilidades Totales:" textFill="#c9c7c7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="utilidadesTotales" layoutX="569.0" layoutY="403.0" text="..." textFill="#c9c7c7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="509.0" layoutY="359.0" mnemonicParsing="false" onAction="#btCalcularUtilidadTotal" text="Calcular" />
                </children>
             </AnchorPane>
          </content>
