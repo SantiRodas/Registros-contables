@@ -692,9 +692,17 @@ public class ControladoraPrincipal {
 
 	@FXML
 	public void impuesto(ActionEvent event) {
-
-		tfImpuesto.setDisable(false);
-
+		
+		if(cbImpuesto.isSelected()) {
+			
+			tfImpuesto.setDisable(false);
+			
+		} else {
+			
+			tfImpuesto.setDisable(true);
+			
+		}
+		
 	}
 	
 	// ----------------------------------------------------------------------------------
@@ -704,7 +712,15 @@ public class ControladoraPrincipal {
 	@FXML
 	public void reserva(ActionEvent event) {
 
-		tfReserva.setDisable(false);
+		if(cbReserva.isSelected()) {
+			
+			tfReserva.setDisable(false);
+			
+		} else {
+			
+			tfReserva.setDisable(true);
+			
+		}
 
 	}
 	
@@ -714,44 +730,48 @@ public class ControladoraPrincipal {
 	
 	@FXML
 	void btCalcularUtilidadTotal(ActionEvent event) {
-
-		int impuestoP = 0;
 		
-		int reservaP = 0;
-
 		try {
 			
-			if(cbImpuesto.isSelected()) {
-
-				impuestoP = Integer.parseInt(tfImpuesto.getText());
-
+			double reservap = 0.0;
+			
+			double impuestop = 0.0;
+			
+			if(cbReserva.isSelected() && cbImpuesto.isSelected()) {
+				
+				reservap = Double.parseDouble(tfReserva.getText());
+				
+				impuestop = Double.parseDouble(tfImpuesto.getText());
+				
+			} else if(cbReserva.isSelected() && cbImpuesto.isSelected() == false) {
+				
+				reservap = Double.parseDouble(tfReserva.getText());
+				
+			} else if(cbReserva.isSelected() == false && cbImpuesto.isSelected()) {
+				
+				impuestop = Double.parseDouble(tfImpuesto.getText());
+				
 			}
 			
-			if(cbReserva.isSelected()) {
+			double utilidad = Double.parseDouble(ingresoTotal.getText()) + Double.parseDouble(gastosTotales.getText());
 
-				reservaP = Integer.parseInt(tfReserva.getText());
+			double impuesto = (utilidad) * (impuestop * 0.01); 
 
-			}
+			double reserva = (utilidad) * (reservap * 0.01);
+
+			double utilidadTotalHelper = utilidad - impuesto - reserva;
+
+			utilidadesTotales.setText(utilidadTotalHelper + "");
+
+			tfImpuesto.setDisable(true);
 			
-		}catch(NumberFormatException e) {
-
+			tfReserva.setDisable(true);
+			
+		} catch(NumberFormatException e1) {
+			
 			errorDatosVacios();
-
+			
 		}
-
-		double utilidad = Double.parseDouble(ingresoTotal.getText())+Double.parseDouble(gastosTotales.getText());
-
-		double impuesto = (utilidad)*(impuestoP * 0.01); 
-
-		double reserva = (utilidad)*(reservaP * 0.01);
-
-		double utilidadTotalHelper = utilidad-impuesto-reserva;
-
-		utilidadesTotales.setText(utilidadTotalHelper+"");
-
-		tfImpuesto.setDisable(true);
-		
-		tfReserva.setDisable(true);
 
 	}
 
