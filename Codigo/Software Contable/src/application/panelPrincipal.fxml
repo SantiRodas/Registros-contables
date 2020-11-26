@@ -14,6 +14,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="758.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -264,7 +265,7 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="balancePrueba" text="S1 - Balance de prueba">
+      <Tab fx:id="balancePrueba" text="Balance de prueba">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -320,7 +321,7 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="balanceGeneral" text="S2 - Balance general">
+      <Tab fx:id="balanceGeneral" text="Balance general">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -355,7 +356,7 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="s3" text="S3 - Estado de resultados">
+      <Tab fx:id="s3" text="Estado de resultados">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="695.0">
                <children>
@@ -369,47 +370,48 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tablaCuantasRsesultados" layoutX="91.0" layoutY="52.0" prefHeight="491.0" prefWidth="234.0">
+                  <TableView fx:id="tablaCuantasRsesultados" layoutX="76.0" layoutY="45.0" prefHeight="462.0" prefWidth="234.0">
                      <columns>
                         <TableColumn fx:id="columnaCuentaResultados" prefWidth="115.0" text="Cuenta" />
                         <TableColumn fx:id="columnaValor" prefWidth="120.0" text="Valor" />
                      </columns>
                   </TableView>
-                  <Label layoutX="465.0" layoutY="175.0" text="Ingreso total:" textFill="#c9c7c7">
+                  <Label layoutX="525.0" layoutY="58.0" text="Ingreso total" textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="455.0" layoutY="207.0" text="Gastos totales:" textFill="#c9c7c7">
+                  <Label layoutX="520.0" layoutY="145.0" text="Gastos totales" textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="ingresoTotal" layoutX="569.0" layoutY="175.0" text="..." textFill="#c9c7c7">
+                  <Label fx:id="ingresoTotal" layoutX="562.0" layoutY="91.0" text="..." textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="gastosTotales" layoutX="569.0" layoutY="207.0" text="..." textFill="#c9c7c7">
+                  <Label fx:id="gastosTotales" layoutX="562.0" layoutY="197.0" text="..." textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="cbReserva" layoutX="451.0" layoutY="254.0" mnemonicParsing="false" onAction="#reserva" text="Reserva" />
-                  <CheckBox fx:id="cbImpuesto" layoutX="552.0" layoutY="254.0" mnemonicParsing="false" onAction="#impuesto" text="Impuesto" />
-                  <TextField fx:id="tfReserva" layoutX="450.0" layoutY="309.0" prefHeight="26.0" prefWidth="66.0" text="En %" />
-                  <TextField fx:id="tfImpuesto" layoutX="557.0" layoutY="309.0" prefHeight="26.0" prefWidth="62.0" text="En %" />
-                  <Label layoutX="431.0" layoutY="403.0" text="Utilidades Totales:" textFill="#c9c7c7">
+                  <CheckBox fx:id="cbReserva" layoutX="482.0" layoutY="276.0" mnemonicParsing="false" onAction="#reserva" text="Reserva" textFill="WHITE" />
+                  <CheckBox fx:id="cbImpuesto" layoutX="583.0" layoutY="276.0" mnemonicParsing="false" onAction="#impuesto" text="Impuesto" textFill="WHITE" />
+                  <TextField fx:id="tfReserva" layoutX="481.0" layoutY="331.0" prefHeight="26.0" prefWidth="66.0" promptText="\%" style="-fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;" />
+                  <TextField fx:id="tfImpuesto" layoutX="588.0" layoutY="331.0" prefHeight="26.0" prefWidth="62.0" promptText="\%" style="-fx-background-color: transparent; -fx-border-color: white; -fx-text-fill: white;" />
+                  <Label layoutX="448.0" layoutY="447.0" text="Utilidades Totales:" textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="utilidadesTotales" layoutX="569.0" layoutY="403.0" text="..." textFill="#c9c7c7">
+                  <Label fx:id="utilidadesTotales" layoutX="604.0" layoutY="447.0" text="..." textFill="#c9c7c7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button layoutX="509.0" layoutY="359.0" mnemonicParsing="false" onAction="#btCalcularUtilidadTotal" text="Calcular" />
+                  <Button layoutX="540.0" layoutY="381.0" mnemonicParsing="false" onAction="#btCalcularUtilidadTotal" text="Calcular" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#596a7a00" height="200.0" layoutX="448.0" layoutY="45.0" stroke="#a4a4a4" strokeType="INSIDE" width="234.0" />
                </children>
             </AnchorPane>
          </content>

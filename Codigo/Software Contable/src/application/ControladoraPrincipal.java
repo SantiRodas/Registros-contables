@@ -53,11 +53,11 @@ public class ControladoraPrincipal {
 	private ObservableList<TransactionTableModel> transactionTableModels;
 
 	private ObservableList<TestBalanceTableModel> testBalanceTableModels;
-	
+
 	private ObservableList<AccountSummaryTableModel> assetsGeneralBalanceTableModels;
-	
+
 	private ObservableList<AccountSummaryTableModel> liaAndNetGeneralBalanceTableModels;
-	
+
 	private ObservableList<AccountSummaryTableModel> helper;
 
 	// ----------------------------------------------------------------------------------
@@ -247,26 +247,26 @@ public class ControladoraPrincipal {
 
 	@FXML
 	private Tab balanceGeneral;
-	
+
 	// TABLA DE LA IZQUIERDA EN LA PANTALLA ASIGNADA
-	
+
 	@FXML
 	private TableView<AccountSummaryTableModel> tablaIzquierda;
-	
+
 	@FXML
 	private TableColumn<AccountSummaryTableModel, String> c1Izquierda;
-	
+
 	@FXML
 	private TableColumn<AccountSummaryTableModel, Double> c2Izquierda;
-	
+
 	// TABLA DE LA DERECHA EN LA PANTALLA ASIGNADA
-	
+
 	@FXML
 	private TableView<AccountSummaryTableModel> tablaDerecha;
-	
+
 	@FXML
 	private TableColumn<AccountSummaryTableModel, String> c1Derecha;
-	
+
 	@FXML
 	private TableColumn<AccountSummaryTableModel, Double> c2Derecha;
 
@@ -277,97 +277,37 @@ public class ControladoraPrincipal {
 	@FXML
 	private Tab s3;
 
-	// METODOS PARA AGREGAR IMPUESTO Y RESERVAS A EL ESTADO DE RESULTADOS
-	
 	@FXML
-	public void impuesto(ActionEvent event) {
+	private TableView<AccountSummaryTableModel> tablaCuantasRsesultados;
 
-		tfImpuesto.setDisable(false);
-			
-	    }
+	@FXML
+	private TableColumn<AccountSummaryTableModel, String> columnaCuentaResultados;
 
-    @FXML
-	public void reserva(ActionEvent event) {
+	@FXML
+	private TableColumn<AccountSummaryTableModel, String> columnaValor;
 
-	    tfReserva.setDisable(false);
-	    	
-    }
-	    
-	// METODOS PARA CALCULAR UTILIDAD TOTAL
-	    
-	    @FXML
-	    void btCalcularUtilidadTotal(ActionEvent event) {
-	    	
-	    	int impuestoP = 0;
-	    	int reservaP = 0;
-	    	
-	    	try {
-	    	if(cbImpuesto.isSelected()) {
-	    		
-	    		impuestoP = Integer.parseInt(tfImpuesto.getText());
+	@FXML
+	private Label ingresoTotal;
 
-	    		
-	    	}if(cbReserva.isSelected()) {
+	@FXML
+	private Label gastosTotales;
 
-	    		reservaP = Integer.parseInt(tfReserva.getText());
+	@FXML
+	private CheckBox cbReserva;
 
+	@FXML
+	private CheckBox cbImpuesto;
 
-	    	}
-	    	}catch(NumberFormatException e) {
-	    		
-	    		errorDatosVacios();
-	    		
-	    	}
-	    	
-	    	double utilidad = Double.parseDouble(ingresoTotal.getText())+Double.parseDouble(gastosTotales.getText());
-	    	
-	    	double impuesto = (utilidad)*(impuestoP * 0.01); 
+	@FXML
+	private TextField tfReserva;
 
-	    	double reserva = (utilidad)*(reservaP * 0.01);
-	    	
-	    	double utilidadTotalHelper = utilidad-impuesto-reserva;
-	    	
-	    	utilidadesTotales.setText(utilidadTotalHelper+"");
-	    	
-	    	tfImpuesto.setDisable(true);
-	    	tfReserva.setDisable(true);
-	    	
-	    	
-	    }
-	
+	@FXML
+	private TextField tfImpuesto;
+
+	@FXML
+	private Label utilidadesTotales;
+
 	// ----------------------------------------------------------------------------------
-	
-	@FXML
-    private TableView<AccountSummaryTableModel> tablaCuantasRsesultados;
-
-    @FXML
-    private TableColumn<AccountSummaryTableModel, String> columnaCuentaResultados;
-
-    @FXML
-    private TableColumn<AccountSummaryTableModel, String> columnaValor;
-
-    @FXML
-    private Label ingresoTotal;
-
-    @FXML
-    private Label gastosTotales;
-
-    @FXML
-    private CheckBox cbReserva;
-
-    @FXML
-    private CheckBox cbImpuesto;
-
-    @FXML
-    private TextField tfReserva;
-
-    @FXML
-    private TextField tfImpuesto;
-
-    @FXML
-    private Label utilidadesTotales;
-
-    // ----------------------------------------------------------------------------------
 
 	// METODO ON ACTION EVENT PARA AGREGAR UNA EMPRESA
 
@@ -641,7 +581,7 @@ public class ControladoraPrincipal {
 				validacionCuenta2.setSelected(false);
 
 				cuenta2.setDisable(true);
-				
+
 				agregarMonedaRegistro2.setDisable(true);
 
 				agregarMonedaRegistro2.setText("");
@@ -661,7 +601,7 @@ public class ControladoraPrincipal {
 				registros.setDisable(false);
 
 				balancePrueba.setDisable(false);
-				
+
 				balanceGeneral.setDisable(false);
 
 				confirmacion();
@@ -669,59 +609,59 @@ public class ControladoraPrincipal {
 				//AGREGAR DATOS A TABLA
 
 				TransactionTableModel model = TransactionTableModel.fromTransaction(registro);
-				
+
 				transactionTableModels.add(model);
-				
+
 				tablaDeRegistros.setItems(transactionTableModels);
-				
+
 				tablaDeRegistros.refresh();
 
 				//ACTUALIZAR BALANCE DE PRUEBA
 
 				Map<String, double[]> map = ReportsModule.testBalance(controladora.getCompany().getRegistros());
-				
+
 				double[] totals = map.get("Total");
-				
+
 				map.remove("Total");
-				
+
 				entradaTotal.setText(totals[0] + "");
-				
+
 				salidaTotal.setText(totals[1] + "");
-				
+
 				ArrayList<TestBalanceTableModel> list = TestBalanceTableModel.fromMap(map);
-				
+
 				balanceTabla.setItems(FXCollections.observableArrayList(list));
-				
+
 				balanceTabla.refresh();
-				
+
 				//ACTUALIZAR BALANCE GENERAL
-				
+
 				ArrayList<ArrayList<AccountSummary>> groups=ReportsModule.generalBalance(controladora.getCompany().getRegistros());
-				
+
 				ArrayList<AccountSummaryTableModel> assets=AccountSummaryTableModel.generateAssetsList(groups.get(0));
-				
+
 				ArrayList<AccountSummaryTableModel> liaAndNet=AccountSummaryTableModel.generateLiabilitiesAndNetworthList(groups.get(1), groups.get(2));
-				
+
 				tablaIzquierda.setItems(FXCollections.observableArrayList(assets));
-				
+
 				tablaDerecha.setItems(FXCollections.observableArrayList(liaAndNet));
-				
+
 				tablaDerecha.refresh();
-				
+
 				tablaIzquierda.refresh();
-				
+
 				//ACTUAIZAR ESTADO DE RESULTADOS
-				
+
 				s3.setDisable(false);
-				
+
 				ArrayList<ArrayList<AccountSummary>> helperGruops=ReportsModule.generalResultados(controladora.getCompany().getRegistros());
-				
+
 				ArrayList<AccountSummaryTableModel> icoAndExp = AccountSummaryTableModel.generateIcoAndExp(helperGruops.get(0), helperGruops.get(1), ingresoTotal, gastosTotales);
-				
+
 				tablaCuantasRsesultados.setItems(FXCollections.observableArrayList(icoAndExp));
-				
+
 				tablaCuantasRsesultados.refresh();
-				
+
 			}
 
 			// DIFERENTES CATCH QUE SE LE HACEN A DIFERENTES EXCEPCIONES
@@ -743,6 +683,75 @@ public class ControladoraPrincipal {
 			errorDatosExistentes();
 
 		}
+
+	}
+
+	// ----------------------------------------------------------------------------------
+	
+	// METODO PARA CAMBIAR DISABLE IMPUESTO
+
+	@FXML
+	public void impuesto(ActionEvent event) {
+
+		tfImpuesto.setDisable(false);
+
+	}
+	
+	// ----------------------------------------------------------------------------------
+	
+	// METODO PARA CAMBIAR DISABLE RESERVA
+
+	@FXML
+	public void reserva(ActionEvent event) {
+
+		tfReserva.setDisable(false);
+
+	}
+	
+	// ----------------------------------------------------------------------------------
+	
+	// METODO BT PARA CALULCAR LA UTILIDAD TOTAL
+	
+	@FXML
+	void btCalcularUtilidadTotal(ActionEvent event) {
+
+		int impuestoP = 0;
+		
+		int reservaP = 0;
+
+		try {
+			
+			if(cbImpuesto.isSelected()) {
+
+				impuestoP = Integer.parseInt(tfImpuesto.getText());
+
+			}
+			
+			if(cbReserva.isSelected()) {
+
+				reservaP = Integer.parseInt(tfReserva.getText());
+
+			}
+			
+		}catch(NumberFormatException e) {
+
+			errorDatosVacios();
+
+		}
+
+		double utilidad = Double.parseDouble(ingresoTotal.getText())+Double.parseDouble(gastosTotales.getText());
+
+		double impuesto = (utilidad)*(impuestoP * 0.01); 
+
+		double reserva = (utilidad)*(reservaP * 0.01);
+
+		double utilidadTotalHelper = utilidad-impuesto-reserva;
+
+		utilidadesTotales.setText(utilidadTotalHelper+"");
+
+		tfImpuesto.setDisable(true);
+		
+		tfReserva.setDisable(true);
 
 	}
 
@@ -913,7 +922,7 @@ public class ControladoraPrincipal {
 		balanceTabla.setItems(testBalanceTableModels);
 
 		// ******************************************************************************
-		
+
 		assetsGeneralBalanceTableModels=FXCollections.observableArrayList();
 		liaAndNetGeneralBalanceTableModels=FXCollections.observableArrayList();
 		c1Izquierda.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
@@ -922,15 +931,15 @@ public class ControladoraPrincipal {
 		c2Derecha.setCellValueFactory(new PropertyValueFactory<>("Valor"));
 		tablaIzquierda.setItems(assetsGeneralBalanceTableModels);
 		tablaDerecha.setItems(liaAndNetGeneralBalanceTableModels);
-		
+
 		// ******************************************************************************
-		
+
 		helper = FXCollections.observableArrayList();
 		columnaCuentaResultados.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
 		columnaValor.setCellValueFactory(new PropertyValueFactory<>("Valor"));
-		
+
 		tablaCuantasRsesultados.setItems(helper);
-		
+
 		// ******************************************************************************
 
 		cuenta.setDisable(true);
@@ -956,15 +965,13 @@ public class ControladoraPrincipal {
 		grupoCuenta.getItems().add("Patrimonio");
 
 		// ******************************************************************************
-		
+
 		tfReserva.setDisable(true);
 		tfImpuesto.setDisable(true);
 
-		
+
 	}
 
 	// ----------------------------------------------------------------------------------
-
-	
 	
 }

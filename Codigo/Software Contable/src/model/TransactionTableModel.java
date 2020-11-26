@@ -170,8 +170,10 @@ public class TransactionTableModel {
 
 	@Override
 	public String toString() {
+		
 		return "TransactionTableModel [nrt=" + nrt + ", nt=" + nt + ", c1t=" + c1t + ", v1t=" + v1t + ", c2t=" + c2t
-				+ ", v2t=" + v2t + ", c3t=" + c3t + ", v3t=" + v3t + ", tpp=" + tpp + "]";
+		+ ", v2t=" + v2t + ", c3t=" + c3t + ", v3t=" + v3t + ", tpp=" + tpp + "]";
+	
 	}
 
 	// ----------------------------------------------------------------------------------
