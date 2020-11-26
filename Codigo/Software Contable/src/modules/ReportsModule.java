@@ -80,7 +80,7 @@ public class ReportsModule {
 
 		map.put("Total", totals);
 
-		map.forEach((k,v)->System.out.println(k+": Entradas: "+v[0]+" Salidas: "+v[1]));
+		//map.forEach((k,v)->System.out.println(k+": Entradas: "+v[0]+" Salidas: "+v[1]));
 
 		return map;
 

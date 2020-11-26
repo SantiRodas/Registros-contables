@@ -78,11 +78,11 @@ public class AccountSummaryTableModel {
 				
 				assetsTable.add(new AccountSummaryTableModel("", ""));
 				
-				assetsTable.add(new AccountSummaryTableModel(assets.get(i).getName(), assets.get(i).getTotalValue() + ""));
+				assetsTable.add(new AccountSummaryTableModel(assets.get(i).getName(), Math.abs(assets.get(i).getTotalValue()) + ""));
 			
 			} else {
 				
-				assetsTable.add(new AccountSummaryTableModel(assets.get(i).getName(), assets.get(i).getTotalValue() + ""));
+				assetsTable.add(new AccountSummaryTableModel(assets.get(i).getName(), Math.abs(assets.get(i).getTotalValue()) + ""));
 			
 			}
 			
@@ -110,11 +110,11 @@ public class AccountSummaryTableModel {
 				
 				resultTable.add(new AccountSummaryTableModel("", ""));
 				
-				resultTable.add(new AccountSummaryTableModel(liabilities.get(i).getName(), liabilities.get(i).getTotalValue() + ""));
+				resultTable.add(new AccountSummaryTableModel(liabilities.get(i).getName(), Math.abs(liabilities.get(i).getTotalValue()) + ""));
 			
 			} else {
 				
-				resultTable.add(new AccountSummaryTableModel(liabilities.get(i).getName(), liabilities.get(i).getTotalValue() + ""));
+				resultTable.add(new AccountSummaryTableModel(liabilities.get(i).getName(), Math.abs(liabilities.get(i).getTotalValue()) + ""));
 			
 			}
 			
@@ -132,11 +132,11 @@ public class AccountSummaryTableModel {
 				
 				resultTable.add(new AccountSummaryTableModel("", ""));
 				
-				resultTable.add(new AccountSummaryTableModel(networth.get(i).getName(), networth.get(i).getTotalValue() + ""));
+				resultTable.add(new AccountSummaryTableModel(networth.get(i).getName(), Math.abs(networth.get(i).getTotalValue()) + ""));
 			
 			} else {
 				
-				resultTable.add(new AccountSummaryTableModel(networth.get(i).getName(), networth.get(i).getTotalValue() + ""));
+				resultTable.add(new AccountSummaryTableModel(networth.get(i).getName(), Math.abs(networth.get(i).getTotalValue()) + ""));
 			
 			}
 			
@@ -145,7 +145,7 @@ public class AccountSummaryTableModel {
 		resultTable.add(new AccountSummaryTableModel("", ""));
 		
 		resultTable.add(new AccountSummaryTableModel("Total Pasivos y Patrimonio", 
-		liabilities.get(liabilities.size()-1).getTotalValue()+networth.get(networth.size()-1).getTotalValue()+""));
+		Math.abs(liabilities.get(liabilities.size()-1).getTotalValue()+networth.get(networth.size()-1).getTotalValue())+""));
 		
 		return resultTable;
 		
@@ -169,11 +169,11 @@ public class AccountSummaryTableModel {
 				
 				resultTable.add(new AccountSummaryTableModel("", ""));
 				
-				resultTable.add(new AccountSummaryTableModel(icome.get(i).getName(), icome.get(i).getTotalValue() + ""));
+				resultTable.add(new AccountSummaryTableModel(icome.get(i).getName(), Math.abs(icome.get(i).getTotalValue()) + ""));
 			
 			} else {
 				
-				resultTable.add(new AccountSummaryTableModel(icome.get(i).getName(), icome.get(i).getTotalValue() + ""));
+				resultTable.add(new AccountSummaryTableModel(icome.get(i).getName(), Math.abs(icome.get(i).getTotalValue()) + ""));
 			
 			}
 			
@@ -191,11 +191,11 @@ public class AccountSummaryTableModel {
 				
 				resultTable.add(new AccountSummaryTableModel("", ""));
 				
-				resultTable.add(new AccountSummaryTableModel(expenses.get(i).getName(), expenses.get(i).getTotalValue() + ""));
+				resultTable.add(new AccountSummaryTableModel(expenses.get(i).getName(), Math.abs(expenses.get(i).getTotalValue()) + ""));
 			
 			} else {
 				
-				resultTable.add(new AccountSummaryTableModel(expenses.get(i).getName(), expenses.get(i).getTotalValue() + ""));
+				resultTable.add(new AccountSummaryTableModel(expenses.get(i).getName(), Math.abs(expenses.get(i).getTotalValue()) + ""));
 			
 			}
 			
@@ -203,9 +203,9 @@ public class AccountSummaryTableModel {
 		
 		resultTable.add(new AccountSummaryTableModel("", ""));
 		
-		ingresoTotal.setText(icome.get(icome.size() -1 ).getTotalValue() + "");
+		ingresoTotal.setText( Math.abs(icome.get(icome.size() -1 ).getTotalValue()) + "");
 		
-		gastosTotales.setText(expenses.get(expenses.size() -1 ).getTotalValue() + "");
+		gastosTotales.setText( Math.abs(expenses.get(expenses.size() -1 ).getTotalValue()) + "");
 		
 		return resultTable;
 	

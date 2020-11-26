@@ -753,13 +753,17 @@ public class ControladoraPrincipal {
 				
 			}
 			
-			double utilidad = Double.parseDouble(ingresoTotal.getText()) + Double.parseDouble(gastosTotales.getText());
+			double utilidad = Double.parseDouble(ingresoTotal.getText()) - Double.parseDouble(gastosTotales.getText());
 
 			double impuesto = (utilidad) * (impuestop * 0.01); 
 
 			double reserva = (utilidad) * (reservap * 0.01);
 
 			double utilidadTotalHelper = utilidad - impuesto - reserva;
+			
+			if(utilidad<0) {
+				utilidadTotalHelper=utilidad;
+			}
 
 			utilidadesTotales.setText(utilidadTotalHelper + "");
 
