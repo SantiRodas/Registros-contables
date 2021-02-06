@@ -1,37 +1,37 @@
-# Registros-contables
-Software funcional que permite tener el manejo contable de una empresa. 
-Desde la administracion de cuentas y registros, hasta los balances y estados, cada una de las funcionalidades cumple con los reglamentos estandares de la contabilidad.
-Ademas, su visualizacion minimalista hace de su uso algo sencillo.
+# Accounting-records
+Functional software that allows you to have the accounting management of a company.
+From the administration of accounts and records, to balance sheets and statements, each one of the functionalities complies with the standard accounting regulations.
+In addition, its minimalist visualization makes it easy to use.
 
-## Requisitos del programa
-* Software Java 8 instalado.
-* JavaFx funcional.
-* Eclipse u otro programa que permita visualizar el software.
+## Program requirements
+* Java 8 software installed.
+* JavaFx functional.
+* Eclipse or another program that allows you to view the software.
 
-## Etapas de construccion
+## Stages of construction 
 
-* Analis
+* Analysis
 https://github.com/SantiRodas/Registros-contables/blob/master/Documentacion/Requerimientos.pdf
 
-* Correcion de analisis.
+* Analysis correction.
 https://github.com/SantiRodas/Registros-contables/blob/master/Documentacion/Retroalimentacion%20requerimientos%20funcionales.docx
 
-## Herramientas de uso
+## Usage tools
 * Google Docs
 * Scene Builder
 * Eclipse
 * GitHub
 
-## Autores
+## Authors
 * Santiago Rodas Rodriguez
 * German Andres Carvajal
 * Kevin Andres Fernandez
 
-## Licencia
+## License
 Este proyecto esta bajo la licencia (Creative Commons Zero v1.0 Universal) Mas informacion en:
 https://github.com/SantiRodas/Registros-contables/blob/master/LICENSE
 
-## Ejemplo de ventanas
+## Window example
 
 ![](https://github.com/SantiRodas/Registros-contables/blob/master/Extras/Imagenes/1.JPG)
 
