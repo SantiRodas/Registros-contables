@@ -11,10 +11,10 @@ In addition, its minimalist visualization makes it easy to use.
 ## Stages of construction 
 
 * Analysis
-https://github.com/SantiRodas/Registros-contables/blob/master/Documentacion/Requerimientos.pdf
+* [Requeriments](https://github.com/SantiRodas/Registros-contables/blob/master/Documentacion/Requerimientos.pdf)
 
 * Analysis correction.
-https://github.com/SantiRodas/Registros-contables/blob/master/Documentacion/Retroalimentacion%20requerimientos%20funcionales.docx
+* [Requeriments](https://github.com/SantiRodas/Registros-contables/blob/master/Documentacion/Retroalimentacion%20requerimientos%20funcionales.docx)
 
 ## Usage tools
 * Google Docs
@@ -28,8 +28,7 @@ https://github.com/SantiRodas/Registros-contables/blob/master/Documentacion/Retr
 * Kevin Andres Fernandez
 
 ## License
-Este proyecto esta bajo la licencia (Creative Commons Zero v1.0 Universal) Mas informacion en:
-https://github.com/SantiRodas/Registros-contables/blob/master/LICENSE
+* [Apache License 2.0](https://github.com/SantiRodas/accounting-records/blob/master/LICENSE)
 
 ## Window example
 
